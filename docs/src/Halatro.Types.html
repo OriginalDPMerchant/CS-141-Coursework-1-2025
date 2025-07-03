@@ -1,0 +1,670 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span id="local-6989586621679029735"><span id="local-6989586621679029736"><span id="local-6989586621679029737"><span id="local-6989586621679029738"><span id="local-6989586621679029739"><span id="local-6989586621679029740"></span></span></span></span></span></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Halatro.Types</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-2"></span><span>
+</span><span id="line-3"></span><span class="hs-comment">--------------------------------------------------------------------------------</span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="annot"><span class="hs-comment">-- | The rank of a card, from Two to Ace</span></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">data</span><span> </span><span id="Rank"><span class="annot"><a href="Halatro.Types.html#Rank"><span class="hs-identifier hs-var">Rank</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Two"><span class="annot"><a href="Halatro.Types.html#Two"><span class="hs-identifier hs-var">Two</span></a></span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="Three"><span class="annot"><a href="Halatro.Types.html#Three"><span class="hs-identifier hs-var">Three</span></a></span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="Four"><span class="annot"><a href="Halatro.Types.html#Four"><span class="hs-identifier hs-var">Four</span></a></span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="Five"><span class="annot"><a href="Halatro.Types.html#Five"><span class="hs-identifier hs-var">Five</span></a></span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="Six"><span class="annot"><a href="Halatro.Types.html#Six"><span class="hs-identifier hs-var">Six</span></a></span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="Seven"><span class="annot"><a href="Halatro.Types.html#Seven"><span class="hs-identifier hs-var">Seven</span></a></span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="Eight"><span class="annot"><a href="Halatro.Types.html#Eight"><span class="hs-identifier hs-var">Eight</span></a></span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="Nine"><span class="annot"><a href="Halatro.Types.html#Nine"><span class="hs-identifier hs-var">Nine</span></a></span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="Ten"><span class="annot"><a href="Halatro.Types.html#Ten"><span class="hs-identifier hs-var">Ten</span></a></span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="Jack"><span class="annot"><a href="Halatro.Types.html#Jack"><span class="hs-identifier hs-var">Jack</span></a></span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="Queen"><span class="annot"><a href="Halatro.Types.html#Queen"><span class="hs-identifier hs-var">Queen</span></a></span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="King"><span class="annot"><a href="Halatro.Types.html#King"><span class="hs-identifier hs-var">King</span></a></span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="Ace"><span class="annot"><a href="Halatro.Types.html#Ace"><span class="hs-identifier hs-var">Ace</span></a></span></span><span>
+</span><span id="line-7"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679029763"><span id="local-6989586621679029765"><span class="annot"><span class="annottext">Rank -&gt; Rank -&gt; Bool
+(Rank -&gt; Rank -&gt; Bool) -&gt; (Rank -&gt; Rank -&gt; Bool) -&gt; Eq Rank
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+$c== :: Rank -&gt; Rank -&gt; Bool
+== :: Rank -&gt; Rank -&gt; Bool
+$c/= :: Rank -&gt; Rank -&gt; Bool
+/= :: Rank -&gt; Rank -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679029772"><span id="local-6989586621679029774"><span id="local-6989586621679029776"><span id="local-6989586621679029780"><span id="local-6989586621679029783"><span id="local-6989586621679029786"><span id="local-6989586621679029789"><span class="annot"><span class="annottext">Eq Rank
+Eq Rank
+-&gt; (Rank -&gt; Rank -&gt; Ordering)
+-&gt; (Rank -&gt; Rank -&gt; Bool)
+-&gt; (Rank -&gt; Rank -&gt; Bool)
+-&gt; (Rank -&gt; Rank -&gt; Bool)
+-&gt; (Rank -&gt; Rank -&gt; Bool)
+-&gt; (Rank -&gt; Rank -&gt; Rank)
+-&gt; (Rank -&gt; Rank -&gt; Rank)
+-&gt; Ord Rank
+Rank -&gt; Rank -&gt; Bool
+Rank -&gt; Rank -&gt; Ordering
+Rank -&gt; Rank -&gt; Rank
+forall a.
+Eq a
+-&gt; (a -&gt; a -&gt; Ordering)
+-&gt; (a -&gt; a -&gt; Bool)
+-&gt; (a -&gt; a -&gt; Bool)
+-&gt; (a -&gt; a -&gt; Bool)
+-&gt; (a -&gt; a -&gt; Bool)
+-&gt; (a -&gt; a -&gt; a)
+-&gt; (a -&gt; a -&gt; a)
+-&gt; Ord a
+$ccompare :: Rank -&gt; Rank -&gt; Ordering
+compare :: Rank -&gt; Rank -&gt; Ordering
+$c&lt; :: Rank -&gt; Rank -&gt; Bool
+&lt; :: Rank -&gt; Rank -&gt; Bool
+$c&lt;= :: Rank -&gt; Rank -&gt; Bool
+&lt;= :: Rank -&gt; Rank -&gt; Bool
+$c&gt; :: Rank -&gt; Rank -&gt; Bool
+&gt; :: Rank -&gt; Rank -&gt; Bool
+$c&gt;= :: Rank -&gt; Rank -&gt; Bool
+&gt;= :: Rank -&gt; Rank -&gt; Bool
+$cmax :: Rank -&gt; Rank -&gt; Rank
+max :: Rank -&gt; Rank -&gt; Rank
+$cmin :: Rank -&gt; Rank -&gt; Rank
+min :: Rank -&gt; Rank -&gt; Rank
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679029793"><span id="local-6989586621679029801"><span id="local-6989586621679029807"><span id="local-6989586621679029817"><span id="local-6989586621679029819"><span id="local-6989586621679029823"><span id="local-6989586621679029827"><span id="local-6989586621679029831"><span class="annot"><span class="annottext">Int -&gt; Rank
+Rank -&gt; Int
+Rank -&gt; [Rank]
+Rank -&gt; Rank
+Rank -&gt; Rank -&gt; [Rank]
+Rank -&gt; Rank -&gt; Rank -&gt; [Rank]
+(Rank -&gt; Rank)
+-&gt; (Rank -&gt; Rank)
+-&gt; (Int -&gt; Rank)
+-&gt; (Rank -&gt; Int)
+-&gt; (Rank -&gt; [Rank])
+-&gt; (Rank -&gt; Rank -&gt; [Rank])
+-&gt; (Rank -&gt; Rank -&gt; [Rank])
+-&gt; (Rank -&gt; Rank -&gt; Rank -&gt; [Rank])
+-&gt; Enum Rank
+forall a.
+(a -&gt; a)
+-&gt; (a -&gt; a)
+-&gt; (Int -&gt; a)
+-&gt; (a -&gt; Int)
+-&gt; (a -&gt; [a])
+-&gt; (a -&gt; a -&gt; [a])
+-&gt; (a -&gt; a -&gt; [a])
+-&gt; (a -&gt; a -&gt; a -&gt; [a])
+-&gt; Enum a
+$csucc :: Rank -&gt; Rank
+succ :: Rank -&gt; Rank
+$cpred :: Rank -&gt; Rank
+pred :: Rank -&gt; Rank
+$ctoEnum :: Int -&gt; Rank
+toEnum :: Int -&gt; Rank
+$cfromEnum :: Rank -&gt; Int
+fromEnum :: Rank -&gt; Int
+$cenumFrom :: Rank -&gt; [Rank]
+enumFrom :: Rank -&gt; [Rank]
+$cenumFromThen :: Rank -&gt; Rank -&gt; [Rank]
+enumFromThen :: Rank -&gt; Rank -&gt; [Rank]
+$cenumFromTo :: Rank -&gt; Rank -&gt; [Rank]
+enumFromTo :: Rank -&gt; Rank -&gt; [Rank]
+$cenumFromThenTo :: Rank -&gt; Rank -&gt; Rank -&gt; [Rank]
+enumFromThenTo :: Rank -&gt; Rank -&gt; Rank -&gt; [Rank]
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Enum</span></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679029835"><span id="local-6989586621679029837"><span class="annot"><span class="annottext">Rank
+Rank -&gt; Rank -&gt; Bounded Rank
+forall a. a -&gt; a -&gt; Bounded a
+$cminBound :: Rank
+minBound :: Rank
+$cmaxBound :: Rank
+maxBound :: Rank
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Bounded</span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-8"></span><span>
+</span><span id="line-9"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679029841"><span id="local-6989586621679029846"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="Halatro.Types.html#Rank"><span class="hs-identifier hs-type">Rank</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-10"></span><span>  </span><span class="annot"><span class="hs-identifier hs-type">show</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Halatro.Types.html#Rank"><span class="hs-identifier hs-type">Rank</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-11"></span><span>  </span><span id="local-6989586621679029850"><span class="annot"><span class="annottext">show :: Rank -&gt; String
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Two"><span class="hs-identifier hs-var">Two</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;2&quot;</span></span><span>
+</span><span id="line-12"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Three"><span class="hs-identifier hs-var">Three</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;3&quot;</span></span><span>
+</span><span id="line-13"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Four"><span class="hs-identifier hs-var">Four</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;4&quot;</span></span><span>
+</span><span id="line-14"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Five"><span class="hs-identifier hs-var">Five</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;5&quot;</span></span><span>
+</span><span id="line-15"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Six"><span class="hs-identifier hs-var">Six</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;6&quot;</span></span><span>
+</span><span id="line-16"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Seven"><span class="hs-identifier hs-var">Seven</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;7&quot;</span></span><span>
+</span><span id="line-17"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Eight"><span class="hs-identifier hs-var">Eight</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;8&quot;</span></span><span>
+</span><span id="line-18"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Nine"><span class="hs-identifier hs-var">Nine</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;9&quot;</span></span><span>
+</span><span id="line-19"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Ten"><span class="hs-identifier hs-var">Ten</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;10&quot;</span></span><span>
+</span><span id="line-20"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Jack"><span class="hs-identifier hs-var">Jack</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;Jack&quot;</span></span><span>
+</span><span id="line-21"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Queen"><span class="hs-identifier hs-var">Queen</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;Queen&quot;</span></span><span>
+</span><span id="line-22"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#King"><span class="hs-identifier hs-var">King</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;King&quot;</span></span><span>
+</span><span id="line-23"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Ace"><span class="hs-identifier hs-var">Ace</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;Ace&quot;</span></span><span>
+</span><span id="line-24"></span><span>
+</span><span id="line-25"></span><span class="annot"><span class="hs-comment">-- | A shorter version of the rank, for use in the Terminal UI.</span></span><span>
+</span><span id="line-26"></span><span class="annot"><a href="Halatro.Types.html#shortRank"><span class="hs-identifier hs-type">shortRank</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Halatro.Types.html#Rank"><span class="hs-identifier hs-type">Rank</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-27"></span><span id="shortRank"><span class="annot"><span class="annottext">shortRank :: Rank -&gt; String
+</span><a href="Halatro.Types.html#shortRank"><span class="hs-identifier hs-var hs-var">shortRank</span></a></span></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Two"><span class="hs-identifier hs-var">Two</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;2&quot;</span></span><span>
+</span><span id="line-28"></span><span class="annot"><a href="Halatro.Types.html#shortRank"><span class="hs-identifier hs-var">shortRank</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Three"><span class="hs-identifier hs-var">Three</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;3&quot;</span></span><span>
+</span><span id="line-29"></span><span class="annot"><a href="Halatro.Types.html#shortRank"><span class="hs-identifier hs-var">shortRank</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Four"><span class="hs-identifier hs-var">Four</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;4&quot;</span></span><span>
+</span><span id="line-30"></span><span class="annot"><a href="Halatro.Types.html#shortRank"><span class="hs-identifier hs-var">shortRank</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Five"><span class="hs-identifier hs-var">Five</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;5&quot;</span></span><span>
+</span><span id="line-31"></span><span class="annot"><a href="Halatro.Types.html#shortRank"><span class="hs-identifier hs-var">shortRank</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Six"><span class="hs-identifier hs-var">Six</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;6&quot;</span></span><span>
+</span><span id="line-32"></span><span class="annot"><a href="Halatro.Types.html#shortRank"><span class="hs-identifier hs-var">shortRank</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Seven"><span class="hs-identifier hs-var">Seven</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;7&quot;</span></span><span>
+</span><span id="line-33"></span><span class="annot"><a href="Halatro.Types.html#shortRank"><span class="hs-identifier hs-var">shortRank</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Eight"><span class="hs-identifier hs-var">Eight</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;8&quot;</span></span><span>
+</span><span id="line-34"></span><span class="annot"><a href="Halatro.Types.html#shortRank"><span class="hs-identifier hs-var">shortRank</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Nine"><span class="hs-identifier hs-var">Nine</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;9&quot;</span></span><span>
+</span><span id="line-35"></span><span class="annot"><a href="Halatro.Types.html#shortRank"><span class="hs-identifier hs-var">shortRank</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Ten"><span class="hs-identifier hs-var">Ten</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;10&quot;</span></span><span>
+</span><span id="line-36"></span><span class="annot"><a href="Halatro.Types.html#shortRank"><span class="hs-identifier hs-var">shortRank</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Jack"><span class="hs-identifier hs-var">Jack</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;J&quot;</span></span><span>
+</span><span id="line-37"></span><span class="annot"><a href="Halatro.Types.html#shortRank"><span class="hs-identifier hs-var">shortRank</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Queen"><span class="hs-identifier hs-var">Queen</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;Q&quot;</span></span><span>
+</span><span id="line-38"></span><span class="annot"><a href="Halatro.Types.html#shortRank"><span class="hs-identifier hs-var">shortRank</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#King"><span class="hs-identifier hs-var">King</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;K&quot;</span></span><span>
+</span><span id="line-39"></span><span class="annot"><a href="Halatro.Types.html#shortRank"><span class="hs-identifier hs-var">shortRank</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Ace"><span class="hs-identifier hs-var">Ace</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;A&quot;</span></span><span>
+</span><span id="line-40"></span><span>
+</span><span id="line-41"></span><span class="hs-comment">--------------------------------------------------------------------------------</span><span>
+</span><span id="line-42"></span><span>
+</span><span id="line-43"></span><span class="annot"><span class="hs-comment">-- | The suit of a card</span></span><span>
+</span><span id="line-44"></span><span class="hs-keyword">data</span><span> </span><span id="Suit"><span class="annot"><a href="Halatro.Types.html#Suit"><span class="hs-identifier hs-var">Suit</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Clubs"><span class="annot"><a href="Halatro.Types.html#Clubs"><span class="hs-identifier hs-var">Clubs</span></a></span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="Diamonds"><span class="annot"><a href="Halatro.Types.html#Diamonds"><span class="hs-identifier hs-var">Diamonds</span></a></span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="Hearts"><span class="annot"><a href="Halatro.Types.html#Hearts"><span class="hs-identifier hs-var">Hearts</span></a></span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="Spades"><span class="annot"><a href="Halatro.Types.html#Spades"><span class="hs-identifier hs-var">Spades</span></a></span></span><span>
+</span><span id="line-45"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679029857"><span id="local-6989586621679029859"><span class="annot"><span class="annottext">Suit -&gt; Suit -&gt; Bool
+(Suit -&gt; Suit -&gt; Bool) -&gt; (Suit -&gt; Suit -&gt; Bool) -&gt; Eq Suit
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+$c== :: Suit -&gt; Suit -&gt; Bool
+== :: Suit -&gt; Suit -&gt; Bool
+$c/= :: Suit -&gt; Suit -&gt; Bool
+/= :: Suit -&gt; Suit -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679029865"><span id="local-6989586621679029867"><span id="local-6989586621679029869"><span id="local-6989586621679029873"><span id="local-6989586621679029876"><span id="local-6989586621679029879"><span id="local-6989586621679029882"><span class="annot"><span class="annottext">Eq Suit
+Eq Suit
+-&gt; (Suit -&gt; Suit -&gt; Ordering)
+-&gt; (Suit -&gt; Suit -&gt; Bool)
+-&gt; (Suit -&gt; Suit -&gt; Bool)
+-&gt; (Suit -&gt; Suit -&gt; Bool)
+-&gt; (Suit -&gt; Suit -&gt; Bool)
+-&gt; (Suit -&gt; Suit -&gt; Suit)
+-&gt; (Suit -&gt; Suit -&gt; Suit)
+-&gt; Ord Suit
+Suit -&gt; Suit -&gt; Bool
+Suit -&gt; Suit -&gt; Ordering
+Suit -&gt; Suit -&gt; Suit
+forall a.
+Eq a
+-&gt; (a -&gt; a -&gt; Ordering)
+-&gt; (a -&gt; a -&gt; Bool)
+-&gt; (a -&gt; a -&gt; Bool)
+-&gt; (a -&gt; a -&gt; Bool)
+-&gt; (a -&gt; a -&gt; Bool)
+-&gt; (a -&gt; a -&gt; a)
+-&gt; (a -&gt; a -&gt; a)
+-&gt; Ord a
+$ccompare :: Suit -&gt; Suit -&gt; Ordering
+compare :: Suit -&gt; Suit -&gt; Ordering
+$c&lt; :: Suit -&gt; Suit -&gt; Bool
+&lt; :: Suit -&gt; Suit -&gt; Bool
+$c&lt;= :: Suit -&gt; Suit -&gt; Bool
+&lt;= :: Suit -&gt; Suit -&gt; Bool
+$c&gt; :: Suit -&gt; Suit -&gt; Bool
+&gt; :: Suit -&gt; Suit -&gt; Bool
+$c&gt;= :: Suit -&gt; Suit -&gt; Bool
+&gt;= :: Suit -&gt; Suit -&gt; Bool
+$cmax :: Suit -&gt; Suit -&gt; Suit
+max :: Suit -&gt; Suit -&gt; Suit
+$cmin :: Suit -&gt; Suit -&gt; Suit
+min :: Suit -&gt; Suit -&gt; Suit
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679029885"><span id="local-6989586621679029891"><span id="local-6989586621679029897"><span id="local-6989586621679029905"><span id="local-6989586621679029907"><span id="local-6989586621679029910"><span id="local-6989586621679029914"><span id="local-6989586621679029918"><span class="annot"><span class="annottext">Int -&gt; Suit
+Suit -&gt; Int
+Suit -&gt; [Suit]
+Suit -&gt; Suit
+Suit -&gt; Suit -&gt; [Suit]
+Suit -&gt; Suit -&gt; Suit -&gt; [Suit]
+(Suit -&gt; Suit)
+-&gt; (Suit -&gt; Suit)
+-&gt; (Int -&gt; Suit)
+-&gt; (Suit -&gt; Int)
+-&gt; (Suit -&gt; [Suit])
+-&gt; (Suit -&gt; Suit -&gt; [Suit])
+-&gt; (Suit -&gt; Suit -&gt; [Suit])
+-&gt; (Suit -&gt; Suit -&gt; Suit -&gt; [Suit])
+-&gt; Enum Suit
+forall a.
+(a -&gt; a)
+-&gt; (a -&gt; a)
+-&gt; (Int -&gt; a)
+-&gt; (a -&gt; Int)
+-&gt; (a -&gt; [a])
+-&gt; (a -&gt; a -&gt; [a])
+-&gt; (a -&gt; a -&gt; [a])
+-&gt; (a -&gt; a -&gt; a -&gt; [a])
+-&gt; Enum a
+$csucc :: Suit -&gt; Suit
+succ :: Suit -&gt; Suit
+$cpred :: Suit -&gt; Suit
+pred :: Suit -&gt; Suit
+$ctoEnum :: Int -&gt; Suit
+toEnum :: Int -&gt; Suit
+$cfromEnum :: Suit -&gt; Int
+fromEnum :: Suit -&gt; Int
+$cenumFrom :: Suit -&gt; [Suit]
+enumFrom :: Suit -&gt; [Suit]
+$cenumFromThen :: Suit -&gt; Suit -&gt; [Suit]
+enumFromThen :: Suit -&gt; Suit -&gt; [Suit]
+$cenumFromTo :: Suit -&gt; Suit -&gt; [Suit]
+enumFromTo :: Suit -&gt; Suit -&gt; [Suit]
+$cenumFromThenTo :: Suit -&gt; Suit -&gt; Suit -&gt; [Suit]
+enumFromThenTo :: Suit -&gt; Suit -&gt; Suit -&gt; [Suit]
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Enum</span></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679029921"><span id="local-6989586621679029923"><span class="annot"><span class="annottext">Suit
+Suit -&gt; Suit -&gt; Bounded Suit
+forall a. a -&gt; a -&gt; Bounded a
+$cminBound :: Suit
+minBound :: Suit
+$cmaxBound :: Suit
+maxBound :: Suit
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Bounded</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679029926"><span id="local-6989586621679029928"><span id="local-6989586621679029932"><span class="annot"><span class="annottext">Int -&gt; Suit -&gt; ShowS
+[Suit] -&gt; ShowS
+Suit -&gt; String
+(Int -&gt; Suit -&gt; ShowS)
+-&gt; (Suit -&gt; String) -&gt; ([Suit] -&gt; ShowS) -&gt; Show Suit
+forall a.
+(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
+$cshowsPrec :: Int -&gt; Suit -&gt; ShowS
+showsPrec :: Int -&gt; Suit -&gt; ShowS
+$cshow :: Suit -&gt; String
+show :: Suit -&gt; String
+$cshowList :: [Suit] -&gt; ShowS
+showList :: [Suit] -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-46"></span><span>
+</span><span id="line-47"></span><span class="hs-comment">-- | This will only render properly for fonts that include the Unicode card</span><span>
+</span><span id="line-48"></span><span class="hs-comment">--     suits, which *should* be most of them, but Windows command prompt might</span><span>
+</span><span id="line-49"></span><span class="hs-comment">--     get weird about it.</span><span>
+</span><span id="line-50"></span><span class="annot"><a href="Halatro.Types.html#shortSuit"><span class="hs-identifier hs-type">shortSuit</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Halatro.Types.html#Suit"><span class="hs-identifier hs-type">Suit</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-51"></span><span id="shortSuit"><span class="annot"><span class="annottext">shortSuit :: Suit -&gt; String
+</span><a href="Halatro.Types.html#shortSuit"><span class="hs-identifier hs-var hs-var">shortSuit</span></a></span></span><span> </span><span class="annot"><span class="annottext">Suit
+</span><a href="Halatro.Types.html#Clubs"><span class="hs-identifier hs-var">Clubs</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;&#9827;&quot;</span></span><span>
+</span><span id="line-52"></span><span class="annot"><a href="Halatro.Types.html#shortSuit"><span class="hs-identifier hs-var">shortSuit</span></a></span><span> </span><span class="annot"><span class="annottext">Suit
+</span><a href="Halatro.Types.html#Diamonds"><span class="hs-identifier hs-var">Diamonds</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;&#9830;&quot;</span></span><span>
+</span><span id="line-53"></span><span class="annot"><a href="Halatro.Types.html#shortSuit"><span class="hs-identifier hs-var">shortSuit</span></a></span><span> </span><span class="annot"><span class="annottext">Suit
+</span><a href="Halatro.Types.html#Hearts"><span class="hs-identifier hs-var">Hearts</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;&#9829;&quot;</span></span><span>
+</span><span id="line-54"></span><span class="annot"><a href="Halatro.Types.html#shortSuit"><span class="hs-identifier hs-var">shortSuit</span></a></span><span> </span><span class="annot"><span class="annottext">Suit
+</span><a href="Halatro.Types.html#Spades"><span class="hs-identifier hs-var">Spades</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;&#9824;&quot;</span></span><span>
+</span><span id="line-55"></span><span>
+</span><span id="line-56"></span><span class="hs-comment">--------------------------------------------------------------------------------</span><span>
+</span><span id="line-57"></span><span>
+</span><span id="line-58"></span><span class="annot"><span class="hs-comment">-- | A playing card is made up of a rank and a suit (e.g. the 2 of Clubs)</span></span><span>
+</span><span id="line-59"></span><span class="hs-keyword">data</span><span> </span><span id="Card"><span class="annot"><a href="Halatro.Types.html#Card"><span class="hs-identifier hs-var">Card</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Card"><span class="annot"><a href="Halatro.Types.html#Card"><span class="hs-identifier hs-var">Card</span></a></span></span><span> </span><span class="annot"><a href="Halatro.Types.html#Rank"><span class="hs-identifier hs-type">Rank</span></a></span><span> </span><span class="annot"><a href="Halatro.Types.html#Suit"><span class="hs-identifier hs-type">Suit</span></a></span><span>
+</span><span id="line-60"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679029937"><span id="local-6989586621679029941"><span class="annot"><span class="annottext">Card -&gt; Card -&gt; Bool
+(Card -&gt; Card -&gt; Bool) -&gt; (Card -&gt; Card -&gt; Bool) -&gt; Eq Card
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+$c== :: Card -&gt; Card -&gt; Bool
+== :: Card -&gt; Card -&gt; Bool
+$c/= :: Card -&gt; Card -&gt; Bool
+/= :: Card -&gt; Card -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679029947"><span id="local-6989586621679029951"><span id="local-6989586621679029955"><span id="local-6989586621679029959"><span id="local-6989586621679029962"><span id="local-6989586621679029965"><span id="local-6989586621679029968"><span class="annot"><span class="annottext">Eq Card
+Eq Card
+-&gt; (Card -&gt; Card -&gt; Ordering)
+-&gt; (Card -&gt; Card -&gt; Bool)
+-&gt; (Card -&gt; Card -&gt; Bool)
+-&gt; (Card -&gt; Card -&gt; Bool)
+-&gt; (Card -&gt; Card -&gt; Bool)
+-&gt; (Card -&gt; Card -&gt; Card)
+-&gt; (Card -&gt; Card -&gt; Card)
+-&gt; Ord Card
+Card -&gt; Card -&gt; Bool
+Card -&gt; Card -&gt; Ordering
+Card -&gt; Card -&gt; Card
+forall a.
+Eq a
+-&gt; (a -&gt; a -&gt; Ordering)
+-&gt; (a -&gt; a -&gt; Bool)
+-&gt; (a -&gt; a -&gt; Bool)
+-&gt; (a -&gt; a -&gt; Bool)
+-&gt; (a -&gt; a -&gt; Bool)
+-&gt; (a -&gt; a -&gt; a)
+-&gt; (a -&gt; a -&gt; a)
+-&gt; Ord a
+$ccompare :: Card -&gt; Card -&gt; Ordering
+compare :: Card -&gt; Card -&gt; Ordering
+$c&lt; :: Card -&gt; Card -&gt; Bool
+&lt; :: Card -&gt; Card -&gt; Bool
+$c&lt;= :: Card -&gt; Card -&gt; Bool
+&lt;= :: Card -&gt; Card -&gt; Bool
+$c&gt; :: Card -&gt; Card -&gt; Bool
+&gt; :: Card -&gt; Card -&gt; Bool
+$c&gt;= :: Card -&gt; Card -&gt; Bool
+&gt;= :: Card -&gt; Card -&gt; Bool
+$cmax :: Card -&gt; Card -&gt; Card
+max :: Card -&gt; Card -&gt; Card
+$cmin :: Card -&gt; Card -&gt; Card
+min :: Card -&gt; Card -&gt; Card
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></span></span></span></span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-61"></span><span>
+</span><span id="line-62"></span><span class="annot"><a href="Halatro.Types.html#rank"><span class="hs-identifier hs-type">rank</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Halatro.Types.html#Card"><span class="hs-identifier hs-type">Card</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Halatro.Types.html#Rank"><span class="hs-identifier hs-type">Rank</span></a></span><span>
+</span><span id="line-63"></span><span id="rank"><span class="annot"><span class="annottext">rank :: Card -&gt; Rank
+</span><a href="Halatro.Types.html#rank"><span class="hs-identifier hs-var hs-var">rank</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Halatro.Types.html#Card"><span class="hs-identifier hs-type">Card</span></a></span><span> </span><span id="local-6989586621679029971"><span class="annot"><span class="annottext">Rank
+</span><a href="#local-6989586621679029971"><span class="hs-identifier hs-var">r</span></a></span></span><span> </span><span class="annot"><span class="annottext">Suit
+</span><span class="hs-identifier">_</span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="#local-6989586621679029971"><span class="hs-identifier hs-var">r</span></a></span><span>
+</span><span id="line-64"></span><span>
+</span><span id="line-65"></span><span class="annot"><a href="Halatro.Types.html#suit"><span class="hs-identifier hs-type">suit</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Halatro.Types.html#Card"><span class="hs-identifier hs-type">Card</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Halatro.Types.html#Suit"><span class="hs-identifier hs-type">Suit</span></a></span><span>
+</span><span id="line-66"></span><span id="suit"><span class="annot"><span class="annottext">suit :: Card -&gt; Suit
+</span><a href="Halatro.Types.html#suit"><span class="hs-identifier hs-var hs-var">suit</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Halatro.Types.html#Card"><span class="hs-identifier hs-type">Card</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><span class="hs-identifier">_</span></span><span> </span><span id="local-6989586621679029973"><span class="annot"><span class="annottext">Suit
+</span><a href="#local-6989586621679029973"><span class="hs-identifier hs-var">s</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Suit
+</span><a href="#local-6989586621679029973"><span class="hs-identifier hs-var">s</span></a></span><span>
+</span><span id="line-67"></span><span>
+</span><span id="line-68"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679029975"><span id="local-6989586621679029979"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="Halatro.Types.html#Card"><span class="hs-identifier hs-type">Card</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-69"></span><span>  </span><span class="annot"><span class="hs-identifier hs-type">show</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Halatro.Types.html#Card"><span class="hs-identifier hs-type">Card</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-70"></span><span>  </span><span id="local-6989586621679029983"><span class="annot"><span class="annottext">show :: Card -&gt; String
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Halatro.Types.html#Card"><span class="hs-identifier hs-type">Card</span></a></span><span> </span><span id="local-6989586621679029984"><span class="annot"><span class="annottext">Rank
+</span><a href="#local-6989586621679029984"><span class="hs-identifier hs-var">r</span></a></span></span><span> </span><span id="local-6989586621679029985"><span class="annot"><span class="annottext">Suit
+</span><a href="#local-6989586621679029985"><span class="hs-identifier hs-var">s</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Rank -&gt; String
+forall a. Show a =&gt; a -&gt; String
+</span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="#local-6989586621679029984"><span class="hs-identifier hs-var">r</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot; of &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">Suit -&gt; String
+forall a. Show a =&gt; a -&gt; String
+</span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">Suit
+</span><a href="#local-6989586621679029985"><span class="hs-identifier hs-var">s</span></a></span><span>
+</span><span id="line-71"></span><span>
+</span><span id="line-72"></span><span class="hs-comment">--------------------------------------------------------------------------------</span><span>
+</span><span id="line-73"></span><span>
+</span><span id="line-74"></span><span class="annot"><span class="hs-comment">-- | We add a convenience type synonym for a hand of cards.</span></span><span>
+</span><span id="line-75"></span><span class="hs-keyword">type</span><span> </span><span id="Hand"><span class="annot"><a href="Halatro.Types.html#Hand"><span class="hs-identifier hs-var">Hand</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Halatro.Types.html#Card"><span class="hs-identifier hs-type">Card</span></a></span><span class="hs-special">]</span><span>
+</span><span id="line-76"></span><span>
+</span><span id="line-77"></span><span class="annot"><span class="hs-comment">-- | Render out a list of card names in a longform but readable format</span></span><span>
+</span><span id="line-78"></span><span class="annot"><a href="Halatro.Types.html#printHand"><span class="hs-identifier hs-type">printHand</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Halatro.Types.html#Hand"><span class="hs-identifier hs-type">Hand</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-79"></span><span id="printHand"><span class="annot"><span class="annottext">printHand :: [Card] -&gt; String
+</span><a href="Halatro.Types.html#printHand"><span class="hs-identifier hs-var hs-var">printHand</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;no cards&quot;</span></span><span>
+</span><span id="line-80"></span><span class="annot"><a href="Halatro.Types.html#printHand"><span class="hs-identifier hs-var">printHand</span></a></span><span> </span><span class="hs-special">[</span><span id="local-6989586621679029988"><span class="annot"><span class="annottext">Card
+</span><a href="#local-6989586621679029988"><span class="hs-identifier hs-var">c1</span></a></span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Card -&gt; String
+forall a. Show a =&gt; a -&gt; String
+</span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">Card
+</span><a href="#local-6989586621679029988"><span class="hs-identifier hs-var">c1</span></a></span><span>
+</span><span id="line-81"></span><span class="annot"><a href="Halatro.Types.html#printHand"><span class="hs-identifier hs-var">printHand</span></a></span><span> </span><span class="hs-special">[</span><span id="local-6989586621679029989"><span class="annot"><span class="annottext">Card
+</span><a href="#local-6989586621679029989"><span class="hs-identifier hs-var">c1</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679029990"><span class="annot"><span class="annottext">Card
+</span><a href="#local-6989586621679029990"><span class="hs-identifier hs-var">c2</span></a></span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Card -&gt; String
+forall a. Show a =&gt; a -&gt; String
+</span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">Card
+</span><a href="#local-6989586621679029989"><span class="hs-identifier hs-var">c1</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot; and &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">Card -&gt; String
+forall a. Show a =&gt; a -&gt; String
+</span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">Card
+</span><a href="#local-6989586621679029990"><span class="hs-identifier hs-var">c2</span></a></span><span>
+</span><span id="line-82"></span><span class="annot"><a href="Halatro.Types.html#printHand"><span class="hs-identifier hs-var">printHand</span></a></span><span> </span><span class="hs-special">[</span><span id="local-6989586621679029991"><span class="annot"><span class="annottext">Card
+</span><a href="#local-6989586621679029991"><span class="hs-identifier hs-var">c1</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679029992"><span class="annot"><span class="annottext">Card
+</span><a href="#local-6989586621679029992"><span class="hs-identifier hs-var">c2</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679029993"><span class="annot"><span class="annottext">Card
+</span><a href="#local-6989586621679029993"><span class="hs-identifier hs-var">c3</span></a></span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Card -&gt; String
+forall a. Show a =&gt; a -&gt; String
+</span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">Card
+</span><a href="#local-6989586621679029991"><span class="hs-identifier hs-var">c1</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;, &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">Card -&gt; String
+forall a. Show a =&gt; a -&gt; String
+</span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">Card
+</span><a href="#local-6989586621679029992"><span class="hs-identifier hs-var">c2</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;, and &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">Card -&gt; String
+forall a. Show a =&gt; a -&gt; String
+</span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">Card
+</span><a href="#local-6989586621679029993"><span class="hs-identifier hs-var">c3</span></a></span><span>
+</span><span id="line-83"></span><span class="annot"><a href="Halatro.Types.html#printHand"><span class="hs-identifier hs-var">printHand</span></a></span><span> </span><span class="hs-special">(</span><span id="local-6989586621679029994"><span class="annot"><span class="annottext">Card
+</span><a href="#local-6989586621679029994"><span class="hs-identifier hs-var">c</span></a></span></span><span> </span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span> </span><span id="local-6989586621679029995"><span class="annot"><span class="annottext">[Card]
+</span><a href="#local-6989586621679029995"><span class="hs-identifier hs-var">cs</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Card -&gt; String
+forall a. Show a =&gt; a -&gt; String
+</span><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">Card
+</span><a href="#local-6989586621679029994"><span class="hs-identifier hs-var">c</span></a></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;, &quot;</span></span><span> </span><span class="annot"><span class="annottext">String -&gt; ShowS
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">[Card] -&gt; String
+</span><a href="Halatro.Types.html#printHand"><span class="hs-identifier hs-var">printHand</span></a></span><span> </span><span class="annot"><span class="annottext">[Card]
+</span><a href="#local-6989586621679029995"><span class="hs-identifier hs-var">cs</span></a></span><span>
+</span><span id="line-84"></span><span>
+</span><span id="line-85"></span><span class="hs-comment">--------------------------------------------------------------------------------</span><span>
+</span><span id="line-86"></span><span>
+</span><span id="line-87"></span><span class="hs-comment">-- |</span><span>
+</span><span id="line-88"></span><span class="hs-comment">--  Every hand has a &quot;type&quot; which is the highest value hand contained within it.</span><span>
+</span><span id="line-89"></span><span class="hs-comment">--</span><span>
+</span><span id="line-90"></span><span class="hs-comment">--  In the full game of Balatro, there are other hand types, but we'll stick to</span><span>
+</span><span id="line-91"></span><span class="hs-comment">--  ones that can be made from a normal deck of cards.</span><span>
+</span><span id="line-92"></span><span class="hs-keyword">data</span><span> </span><span id="HandType"><span class="annot"><a href="Halatro.Types.html#HandType"><span class="hs-identifier hs-var">HandType</span></a></span></span><span>
+</span><span id="line-93"></span><span>  </span><span class="hs-glyph">=</span><span> </span><span id="None"><span class="annot"><a href="Halatro.Types.html#None"><span class="hs-identifier hs-var">None</span></a></span></span><span>
+</span><span id="line-94"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="HighCard"><span class="annot"><a href="Halatro.Types.html#HighCard"><span class="hs-identifier hs-var">HighCard</span></a></span></span><span>
+</span><span id="line-95"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="Pair"><span class="annot"><a href="Halatro.Types.html#Pair"><span class="hs-identifier hs-var">Pair</span></a></span></span><span>
+</span><span id="line-96"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="TwoPair"><span class="annot"><a href="Halatro.Types.html#TwoPair"><span class="hs-identifier hs-var">TwoPair</span></a></span></span><span>
+</span><span id="line-97"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="ThreeOfAKind"><span class="annot"><a href="Halatro.Types.html#ThreeOfAKind"><span class="hs-identifier hs-var">ThreeOfAKind</span></a></span></span><span>
+</span><span id="line-98"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="Straight"><span class="annot"><a href="Halatro.Types.html#Straight"><span class="hs-identifier hs-var">Straight</span></a></span></span><span>
+</span><span id="line-99"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="Flush"><span class="annot"><a href="Halatro.Types.html#Flush"><span class="hs-identifier hs-var">Flush</span></a></span></span><span>
+</span><span id="line-100"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="FullHouse"><span class="annot"><a href="Halatro.Types.html#FullHouse"><span class="hs-identifier hs-var">FullHouse</span></a></span></span><span>
+</span><span id="line-101"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="FourOfAKind"><span class="annot"><a href="Halatro.Types.html#FourOfAKind"><span class="hs-identifier hs-var">FourOfAKind</span></a></span></span><span>
+</span><span id="line-102"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="StraightFlush"><span class="annot"><a href="Halatro.Types.html#StraightFlush"><span class="hs-identifier hs-var">StraightFlush</span></a></span></span><span>
+</span><span id="line-103"></span><span>  </span><span class="hs-glyph">|</span><span> </span><span id="RoyalFlush"><span class="annot"><a href="Halatro.Types.html#RoyalFlush"><span class="hs-identifier hs-var">RoyalFlush</span></a></span></span><span>
+</span><span id="line-104"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679030008"><span id="local-6989586621679030010"><span class="annot"><span class="annottext">HandType -&gt; HandType -&gt; Bool
+(HandType -&gt; HandType -&gt; Bool)
+-&gt; (HandType -&gt; HandType -&gt; Bool) -&gt; Eq HandType
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+$c== :: HandType -&gt; HandType -&gt; Bool
+== :: HandType -&gt; HandType -&gt; Bool
+$c/= :: HandType -&gt; HandType -&gt; Bool
+/= :: HandType -&gt; HandType -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679030016"><span id="local-6989586621679030018"><span id="local-6989586621679030020"><span id="local-6989586621679030024"><span id="local-6989586621679030027"><span id="local-6989586621679030030"><span id="local-6989586621679030033"><span class="annot"><span class="annottext">Eq HandType
+Eq HandType
+-&gt; (HandType -&gt; HandType -&gt; Ordering)
+-&gt; (HandType -&gt; HandType -&gt; Bool)
+-&gt; (HandType -&gt; HandType -&gt; Bool)
+-&gt; (HandType -&gt; HandType -&gt; Bool)
+-&gt; (HandType -&gt; HandType -&gt; Bool)
+-&gt; (HandType -&gt; HandType -&gt; HandType)
+-&gt; (HandType -&gt; HandType -&gt; HandType)
+-&gt; Ord HandType
+HandType -&gt; HandType -&gt; Bool
+HandType -&gt; HandType -&gt; Ordering
+HandType -&gt; HandType -&gt; HandType
+forall a.
+Eq a
+-&gt; (a -&gt; a -&gt; Ordering)
+-&gt; (a -&gt; a -&gt; Bool)
+-&gt; (a -&gt; a -&gt; Bool)
+-&gt; (a -&gt; a -&gt; Bool)
+-&gt; (a -&gt; a -&gt; Bool)
+-&gt; (a -&gt; a -&gt; a)
+-&gt; (a -&gt; a -&gt; a)
+-&gt; Ord a
+$ccompare :: HandType -&gt; HandType -&gt; Ordering
+compare :: HandType -&gt; HandType -&gt; Ordering
+$c&lt; :: HandType -&gt; HandType -&gt; Bool
+&lt; :: HandType -&gt; HandType -&gt; Bool
+$c&lt;= :: HandType -&gt; HandType -&gt; Bool
+&lt;= :: HandType -&gt; HandType -&gt; Bool
+$c&gt; :: HandType -&gt; HandType -&gt; Bool
+&gt; :: HandType -&gt; HandType -&gt; Bool
+$c&gt;= :: HandType -&gt; HandType -&gt; Bool
+&gt;= :: HandType -&gt; HandType -&gt; Bool
+$cmax :: HandType -&gt; HandType -&gt; HandType
+max :: HandType -&gt; HandType -&gt; HandType
+$cmin :: HandType -&gt; HandType -&gt; HandType
+min :: HandType -&gt; HandType -&gt; HandType
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Ord</span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679030036"><span id="local-6989586621679030042"><span id="local-6989586621679030048"><span id="local-6989586621679030056"><span id="local-6989586621679030058"><span id="local-6989586621679030061"><span id="local-6989586621679030065"><span id="local-6989586621679030069"><span class="annot"><span class="annottext">Int -&gt; HandType
+HandType -&gt; Int
+HandType -&gt; [HandType]
+HandType -&gt; HandType
+HandType -&gt; HandType -&gt; [HandType]
+HandType -&gt; HandType -&gt; HandType -&gt; [HandType]
+(HandType -&gt; HandType)
+-&gt; (HandType -&gt; HandType)
+-&gt; (Int -&gt; HandType)
+-&gt; (HandType -&gt; Int)
+-&gt; (HandType -&gt; [HandType])
+-&gt; (HandType -&gt; HandType -&gt; [HandType])
+-&gt; (HandType -&gt; HandType -&gt; [HandType])
+-&gt; (HandType -&gt; HandType -&gt; HandType -&gt; [HandType])
+-&gt; Enum HandType
+forall a.
+(a -&gt; a)
+-&gt; (a -&gt; a)
+-&gt; (Int -&gt; a)
+-&gt; (a -&gt; Int)
+-&gt; (a -&gt; [a])
+-&gt; (a -&gt; a -&gt; [a])
+-&gt; (a -&gt; a -&gt; [a])
+-&gt; (a -&gt; a -&gt; a -&gt; [a])
+-&gt; Enum a
+$csucc :: HandType -&gt; HandType
+succ :: HandType -&gt; HandType
+$cpred :: HandType -&gt; HandType
+pred :: HandType -&gt; HandType
+$ctoEnum :: Int -&gt; HandType
+toEnum :: Int -&gt; HandType
+$cfromEnum :: HandType -&gt; Int
+fromEnum :: HandType -&gt; Int
+$cenumFrom :: HandType -&gt; [HandType]
+enumFrom :: HandType -&gt; [HandType]
+$cenumFromThen :: HandType -&gt; HandType -&gt; [HandType]
+enumFromThen :: HandType -&gt; HandType -&gt; [HandType]
+$cenumFromTo :: HandType -&gt; HandType -&gt; [HandType]
+enumFromTo :: HandType -&gt; HandType -&gt; [HandType]
+$cenumFromThenTo :: HandType -&gt; HandType -&gt; HandType -&gt; [HandType]
+enumFromThenTo :: HandType -&gt; HandType -&gt; HandType -&gt; [HandType]
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Enum</span></span></span></span></span></span></span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679030072"><span id="local-6989586621679030074"><span class="annot"><span class="annottext">HandType
+HandType -&gt; HandType -&gt; Bounded HandType
+forall a. a -&gt; a -&gt; Bounded a
+$cminBound :: HandType
+minBound :: HandType
+$cmaxBound :: HandType
+maxBound :: HandType
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Bounded</span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-105"></span><span>
+</span><span id="line-106"></span><span class="hs-keyword">instance</span><span> </span><span id="local-6989586621679030077"><span id="local-6989586621679030082"><span class="annot"><span class="hs-identifier hs-type">Show</span></span><span> </span><span class="annot"><a href="Halatro.Types.html#HandType"><span class="hs-identifier hs-type">HandType</span></a></span></span></span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-107"></span><span>  </span><span class="annot"><span class="hs-identifier hs-type">show</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Halatro.Types.html#HandType"><span class="hs-identifier hs-type">HandType</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">String</span></span><span>
+</span><span id="line-108"></span><span>  </span><span id="local-6989586621679030084"><span class="annot"><span class="annottext">show :: HandType -&gt; String
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var">show</span></span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#None"><span class="hs-identifier hs-var">None</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;None&quot;</span></span><span>
+</span><span id="line-109"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#HighCard"><span class="hs-identifier hs-var">HighCard</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;High Card&quot;</span></span><span>
+</span><span id="line-110"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#Pair"><span class="hs-identifier hs-var">Pair</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;Pair&quot;</span></span><span>
+</span><span id="line-111"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#TwoPair"><span class="hs-identifier hs-var">TwoPair</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;Two Pair&quot;</span></span><span>
+</span><span id="line-112"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#ThreeOfAKind"><span class="hs-identifier hs-var">ThreeOfAKind</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;Three of a Kind&quot;</span></span><span>
+</span><span id="line-113"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#Straight"><span class="hs-identifier hs-var">Straight</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;Straight&quot;</span></span><span>
+</span><span id="line-114"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#Flush"><span class="hs-identifier hs-var">Flush</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;Flush&quot;</span></span><span>
+</span><span id="line-115"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#FullHouse"><span class="hs-identifier hs-var">FullHouse</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;Full House&quot;</span></span><span>
+</span><span id="line-116"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#FourOfAKind"><span class="hs-identifier hs-var">FourOfAKind</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;Four of a Kind&quot;</span></span><span>
+</span><span id="line-117"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#StraightFlush"><span class="hs-identifier hs-var">StraightFlush</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;Straight Flush&quot;</span></span><span>
+</span><span id="line-118"></span><span>  </span><span class="annot"><span class="hs-identifier hs-var">show</span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#RoyalFlush"><span class="hs-identifier hs-var">RoyalFlush</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">String
+</span><span class="hs-string">&quot;Royal Flush&quot;</span></span><span>
+</span><span id="line-119"></span><span>
+</span><span id="line-120"></span><span class="hs-keyword">type</span><span> </span><span id="Chips"><span class="annot"><a href="Halatro.Types.html#Chips"><span class="hs-identifier hs-var">Chips</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
+</span><span id="line-121"></span><span>
+</span><span id="line-122"></span><span class="hs-keyword">type</span><span> </span><span id="Mult"><span class="annot"><a href="Halatro.Types.html#Mult"><span class="hs-identifier hs-var">Mult</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
+</span><span id="line-123"></span><span>
+</span><span id="line-124"></span><span class="hs-comment">--------------------------------------------------------------------------------</span><span>
+</span><span id="line-125"></span><span class="hs-comment">-- Types for the AI</span><span>
+</span><span id="line-126"></span><span>
+</span><span id="line-127"></span><span class="hs-keyword">data</span><span> </span><span id="PlayOrDiscard"><span class="annot"><a href="Halatro.Types.html#PlayOrDiscard"><span class="hs-identifier hs-var">PlayOrDiscard</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Play"><span class="annot"><a href="Halatro.Types.html#Play"><span class="hs-identifier hs-var">Play</span></a></span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="Discard"><span class="annot"><a href="Halatro.Types.html#Discard"><span class="hs-identifier hs-var">Discard</span></a></span></span><span>
+</span><span id="line-128"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679030090"><span id="local-6989586621679030092"><span class="annot"><span class="annottext">PlayOrDiscard -&gt; PlayOrDiscard -&gt; Bool
+(PlayOrDiscard -&gt; PlayOrDiscard -&gt; Bool)
+-&gt; (PlayOrDiscard -&gt; PlayOrDiscard -&gt; Bool) -&gt; Eq PlayOrDiscard
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+$c== :: PlayOrDiscard -&gt; PlayOrDiscard -&gt; Bool
+== :: PlayOrDiscard -&gt; PlayOrDiscard -&gt; Bool
+$c/= :: PlayOrDiscard -&gt; PlayOrDiscard -&gt; Bool
+/= :: PlayOrDiscard -&gt; PlayOrDiscard -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679030096"><span id="local-6989586621679030098"><span id="local-6989586621679030102"><span class="annot"><span class="annottext">Int -&gt; PlayOrDiscard -&gt; ShowS
+[PlayOrDiscard] -&gt; ShowS
+PlayOrDiscard -&gt; String
+(Int -&gt; PlayOrDiscard -&gt; ShowS)
+-&gt; (PlayOrDiscard -&gt; String)
+-&gt; ([PlayOrDiscard] -&gt; ShowS)
+-&gt; Show PlayOrDiscard
+forall a.
+(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
+$cshowsPrec :: Int -&gt; PlayOrDiscard -&gt; ShowS
+showsPrec :: Int -&gt; PlayOrDiscard -&gt; ShowS
+$cshow :: PlayOrDiscard -&gt; String
+show :: PlayOrDiscard -&gt; String
+$cshowList :: [PlayOrDiscard] -&gt; ShowS
+showList :: [PlayOrDiscard] -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-129"></span><span>
+</span><span id="line-130"></span><span class="hs-keyword">data</span><span> </span><span id="Move"><span class="annot"><a href="Halatro.Types.html#Move"><span class="hs-identifier hs-var">Move</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Move"><span class="annot"><a href="Halatro.Types.html#Move"><span class="hs-identifier hs-var">Move</span></a></span></span><span> </span><span class="annot"><a href="Halatro.Types.html#PlayOrDiscard"><span class="hs-identifier hs-type">PlayOrDiscard</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Halatro.Types.html#Card"><span class="hs-identifier hs-type">Card</span></a></span><span class="hs-special">]</span><span>
+</span><span id="line-131"></span><span>  </span><span class="hs-keyword">deriving</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679030106"><span id="local-6989586621679030112"><span class="annot"><span class="annottext">Move -&gt; Move -&gt; Bool
+(Move -&gt; Move -&gt; Bool) -&gt; (Move -&gt; Move -&gt; Bool) -&gt; Eq Move
+forall a. (a -&gt; a -&gt; Bool) -&gt; (a -&gt; a -&gt; Bool) -&gt; Eq a
+$c== :: Move -&gt; Move -&gt; Bool
+== :: Move -&gt; Move -&gt; Bool
+$c/= :: Move -&gt; Move -&gt; Bool
+/= :: Move -&gt; Move -&gt; Bool
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var">Eq</span></span></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679030116"><span id="local-6989586621679030122"><span id="local-6989586621679030126"><span class="annot"><span class="annottext">Int -&gt; Move -&gt; ShowS
+[Move] -&gt; ShowS
+Move -&gt; String
+(Int -&gt; Move -&gt; ShowS)
+-&gt; (Move -&gt; String) -&gt; ([Move] -&gt; ShowS) -&gt; Show Move
+forall a.
+(Int -&gt; a -&gt; ShowS) -&gt; (a -&gt; String) -&gt; ([a] -&gt; ShowS) -&gt; Show a
+$cshowsPrec :: Int -&gt; Move -&gt; ShowS
+showsPrec :: Int -&gt; Move -&gt; ShowS
+$cshow :: Move -&gt; String
+show :: Move -&gt; String
+$cshowList :: [Move] -&gt; ShowS
+showList :: [Move] -&gt; ShowS
+</span><span class="hs-identifier hs-var hs-var hs-var hs-var hs-var hs-var hs-var hs-var">Show</span></span></span></span></span><span class="hs-special">)</span><span>
+</span><span id="line-132"></span></pre></body></html>

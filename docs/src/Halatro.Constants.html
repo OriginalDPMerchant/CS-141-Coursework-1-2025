@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">Halatro.Constants</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-2"></span><span>
+</span><span id="line-3"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="Halatro.Types.html"><span class="hs-identifier">Halatro.Types</span></a></span><span>
+</span><span id="line-4"></span><span>
+</span><span id="line-5"></span><span class="annot"><span class="hs-comment">-- | We will hard-code the hand size to 8.</span></span><span>
+</span><span id="line-6"></span><span class="annot"><a href="Halatro.Constants.html#handSize"><span class="hs-identifier hs-type">handSize</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
+</span><span id="line-7"></span><span id="handSize"><span class="annot"><span class="annottext">handSize :: Int
+</span><a href="Halatro.Constants.html#handSize"><span class="hs-identifier hs-var hs-var">handSize</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">8</span></span><span>
+</span><span id="line-8"></span><span>
+</span><span id="line-9"></span><span class="annot"><a href="Halatro.Constants.html#handTypeValues"><span class="hs-identifier hs-type">handTypeValues</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Halatro.Types.html#HandType"><span class="hs-identifier hs-type">HandType</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="Halatro.Types.html#Chips"><span class="hs-identifier hs-type">Chips</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="Halatro.Types.html#Mult"><span class="hs-identifier hs-type">Mult</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-10"></span><span id="handTypeValues"><span class="annot"><span class="annottext">handTypeValues :: HandType -&gt; (Int, Int)
+</span><a href="Halatro.Constants.html#handTypeValues"><span class="hs-identifier hs-var hs-var">handTypeValues</span></a></span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#None"><span class="hs-identifier hs-var">None</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">0</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">0</span></span><span class="hs-special">)</span><span>
+</span><span id="line-11"></span><span class="annot"><a href="Halatro.Constants.html#handTypeValues"><span class="hs-identifier hs-var">handTypeValues</span></a></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#HighCard"><span class="hs-identifier hs-var">HighCard</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">5</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">1</span></span><span class="hs-special">)</span><span>
+</span><span id="line-12"></span><span class="annot"><a href="Halatro.Constants.html#handTypeValues"><span class="hs-identifier hs-var">handTypeValues</span></a></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#Pair"><span class="hs-identifier hs-var">Pair</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">10</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">2</span></span><span class="hs-special">)</span><span>
+</span><span id="line-13"></span><span class="annot"><a href="Halatro.Constants.html#handTypeValues"><span class="hs-identifier hs-var">handTypeValues</span></a></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#TwoPair"><span class="hs-identifier hs-var">TwoPair</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">20</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">2</span></span><span class="hs-special">)</span><span>
+</span><span id="line-14"></span><span class="annot"><a href="Halatro.Constants.html#handTypeValues"><span class="hs-identifier hs-var">handTypeValues</span></a></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#ThreeOfAKind"><span class="hs-identifier hs-var">ThreeOfAKind</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">30</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">3</span></span><span class="hs-special">)</span><span>
+</span><span id="line-15"></span><span class="annot"><a href="Halatro.Constants.html#handTypeValues"><span class="hs-identifier hs-var">handTypeValues</span></a></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#Straight"><span class="hs-identifier hs-var">Straight</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">30</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">4</span></span><span class="hs-special">)</span><span>
+</span><span id="line-16"></span><span class="annot"><a href="Halatro.Constants.html#handTypeValues"><span class="hs-identifier hs-var">handTypeValues</span></a></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#Flush"><span class="hs-identifier hs-var">Flush</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">35</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">4</span></span><span class="hs-special">)</span><span>
+</span><span id="line-17"></span><span class="annot"><a href="Halatro.Constants.html#handTypeValues"><span class="hs-identifier hs-var">handTypeValues</span></a></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#FullHouse"><span class="hs-identifier hs-var">FullHouse</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">40</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">4</span></span><span class="hs-special">)</span><span>
+</span><span id="line-18"></span><span class="annot"><a href="Halatro.Constants.html#handTypeValues"><span class="hs-identifier hs-var">handTypeValues</span></a></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#FourOfAKind"><span class="hs-identifier hs-var">FourOfAKind</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">60</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">7</span></span><span class="hs-special">)</span><span>
+</span><span id="line-19"></span><span class="annot"><a href="Halatro.Constants.html#handTypeValues"><span class="hs-identifier hs-var">handTypeValues</span></a></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#StraightFlush"><span class="hs-identifier hs-var">StraightFlush</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">100</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">8</span></span><span class="hs-special">)</span><span>
+</span><span id="line-20"></span><span class="annot"><a href="Halatro.Constants.html#handTypeValues"><span class="hs-identifier hs-var">handTypeValues</span></a></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#RoyalFlush"><span class="hs-identifier hs-var">RoyalFlush</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">100</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">8</span></span><span class="hs-special">)</span><span>
+</span><span id="line-21"></span><span>
+</span><span id="line-22"></span><span class="annot"><a href="Halatro.Constants.html#rankScore"><span class="hs-identifier hs-type">rankScore</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Halatro.Types.html#Rank"><span class="hs-identifier hs-type">Rank</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
+</span><span id="line-23"></span><span id="rankScore"><span class="annot"><span class="annottext">rankScore :: Rank -&gt; Int
+</span><a href="Halatro.Constants.html#rankScore"><span class="hs-identifier hs-var hs-var">rankScore</span></a></span></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Ace"><span class="hs-identifier hs-var">Ace</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">11</span></span><span>
+</span><span id="line-24"></span><span class="annot"><a href="Halatro.Constants.html#rankScore"><span class="hs-identifier hs-var">rankScore</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#King"><span class="hs-identifier hs-var">King</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">10</span></span><span>
+</span><span id="line-25"></span><span class="annot"><a href="Halatro.Constants.html#rankScore"><span class="hs-identifier hs-var">rankScore</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Queen"><span class="hs-identifier hs-var">Queen</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">10</span></span><span>
+</span><span id="line-26"></span><span class="annot"><a href="Halatro.Constants.html#rankScore"><span class="hs-identifier hs-var">rankScore</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Jack"><span class="hs-identifier hs-var">Jack</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">10</span></span><span>
+</span><span id="line-27"></span><span class="annot"><a href="Halatro.Constants.html#rankScore"><span class="hs-identifier hs-var">rankScore</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Ten"><span class="hs-identifier hs-var">Ten</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">10</span></span><span>
+</span><span id="line-28"></span><span class="annot"><a href="Halatro.Constants.html#rankScore"><span class="hs-identifier hs-var">rankScore</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Nine"><span class="hs-identifier hs-var">Nine</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">9</span></span><span>
+</span><span id="line-29"></span><span class="annot"><a href="Halatro.Constants.html#rankScore"><span class="hs-identifier hs-var">rankScore</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Eight"><span class="hs-identifier hs-var">Eight</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">8</span></span><span>
+</span><span id="line-30"></span><span class="annot"><a href="Halatro.Constants.html#rankScore"><span class="hs-identifier hs-var">rankScore</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Seven"><span class="hs-identifier hs-var">Seven</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">7</span></span><span>
+</span><span id="line-31"></span><span class="annot"><a href="Halatro.Constants.html#rankScore"><span class="hs-identifier hs-var">rankScore</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Six"><span class="hs-identifier hs-var">Six</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">6</span></span><span>
+</span><span id="line-32"></span><span class="annot"><a href="Halatro.Constants.html#rankScore"><span class="hs-identifier hs-var">rankScore</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Five"><span class="hs-identifier hs-var">Five</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">5</span></span><span>
+</span><span id="line-33"></span><span class="annot"><a href="Halatro.Constants.html#rankScore"><span class="hs-identifier hs-var">rankScore</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Four"><span class="hs-identifier hs-var">Four</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">4</span></span><span>
+</span><span id="line-34"></span><span class="annot"><a href="Halatro.Constants.html#rankScore"><span class="hs-identifier hs-var">rankScore</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Three"><span class="hs-identifier hs-var">Three</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">3</span></span><span>
+</span><span id="line-35"></span><span class="annot"><a href="Halatro.Constants.html#rankScore"><span class="hs-identifier hs-var">rankScore</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Two"><span class="hs-identifier hs-var">Two</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">2</span></span></pre></body></html>

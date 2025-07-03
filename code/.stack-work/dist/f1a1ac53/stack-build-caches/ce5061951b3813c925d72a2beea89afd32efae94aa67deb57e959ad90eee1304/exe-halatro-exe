@@ -1,0 +1,20 @@
+? C:\Users\feran\Documents\University\Year1\Coursework\CS141\Coursework 1\.stack-work\dist\f1a1ac53\build\halatro-exe\autogen\Paths_halatro.hs
+: hash: 84f69c25c20bc86589dae91e352d92633caff407ab2646c6baaddb07f36f114e
+? C:\Users\feran\Documents\University\Year1\Coursework\CS141\Coursework 1\.stack-work\dist\f1a1ac53\build\halatro-exe\autogen\cabal_macros.h
+: hash: d7e5adac1161557a86bb94d90c19792e68fb86201ca511d5da50849beb2bf7d4
+C:\Users\feran\Documents\University\Year1\Coursework\CS141\Coursework 1\app\Halatro\Frontend.hs:
+  hash: 5b29ba9aacd990d7dc67d008a26bb72c5f0705b21d7c39f325ec2038ecc14dd8
+C:\Users\feran\Documents\University\Year1\Coursework\CS141\Coursework 1\app\Halatro\Frontend\Types.hs:
+  hash: 63f45e19569207aa8dae9591909b46368e500e5578e06d7c55e72adcbbaa74ff
+C:\Users\feran\Documents\University\Year1\Coursework\CS141\Coursework 1\app\Halatro\Frontend\Utils.hs:
+  hash: 25abac316c78e22809745a7048c59567513a92f82bf059ee66363d6477dbd47a
+C:\Users\feran\Documents\University\Year1\Coursework\CS141\Coursework 1\app\Halatro\Frontend\Widgets.hs:
+  hash: b5a8be80ac0a60bfd88891bf38e67d6a637786564397c5fd5e4273e2d48be0ba
+C:\Users\feran\Documents\University\Year1\Coursework\CS141\Coursework 1\app\Main.hs:
+  hash: 32459764cf92ff4b09303a4c18b04f7fc02590587b2376f9b605e60d5938c223
+C:\Users\feran\Documents\University\Year1\Coursework\CS141\Coursework 1\halatro.cabal:
+  hash: 93166f6522cc3a4844e29b10460840acc31a311b2b47b0054489fdffae5d82e5
+C:\Users\feran\Documents\University\Year1\Coursework\CS141\Coursework 1\package.yaml:
+  hash: b68ba00956349e7bf9323f75df1347dc751ac8cefa086048989ded838e8dc7d4
+C:\ghcup\ghc\9.4.8\lib\x86_64-windows-ghc-9.4.8\rts-1.0.2\include\ghcversion.h:
+  hash: 4bc88722407a89d1efbfa9c116cd4017af6ea3ff746643032b96cef62782f5dd

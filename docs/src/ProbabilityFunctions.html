@@ -1,0 +1,701 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">ProbabilityFunctions</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-2"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="Halatro.Constants.html"><span class="hs-identifier">Halatro.Constants</span></a></span><span>
+</span><span id="line-3"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="Halatro.Types.html"><span class="hs-identifier">Halatro.Types</span></a></span><span>
+</span><span id="line-4"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.List</span></span><span>
+</span><span id="line-5"></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="AuxiliaryFunctions.html"><span class="hs-identifier">AuxiliaryFunctions</span></a></span><span>
+</span><span id="line-7"></span><span>
+</span><span id="line-8"></span><span class="annot"><span class="hs-comment">{-|
+Purpose:
+    
+    * Computes n!
+
+Parameters:
+    
+    * 1st Parameter (n) : The number top compute the factorial for
+
+Output:
+    
+    * Returns n!
+
+Notes:
+    
+    * n must be greater than zero
+-}</span></span><span>
+</span><span id="line-25"></span><span class="annot"><a href="ProbabilityFunctions.html#factorial"><span class="hs-identifier hs-type">factorial</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Double</span></span><span>
+</span><span id="line-26"></span><span id="factorial"><span class="annot"><span class="annottext">factorial :: Int -&gt; Double
+</span><a href="ProbabilityFunctions.html#factorial"><span class="hs-identifier hs-var hs-var">factorial</span></a></span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">0</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Double
+</span><span class="hs-number">1</span></span><span>
+</span><span id="line-27"></span><span class="annot"><a href="ProbabilityFunctions.html#factorial"><span class="hs-identifier hs-var">factorial</span></a></span><span> </span><span id="local-6989586621679030401"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030401"><span class="hs-identifier hs-var">n</span></a></span></span><span> </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030401"><span class="hs-identifier hs-var">n</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Bool
+forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">&gt;</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">0</span></span><span>     </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Double
+forall a b. (Integral a, Num b) =&gt; a -&gt; b
+</span><span class="hs-identifier hs-var">fromIntegral</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030401"><span class="hs-identifier hs-var">n</span></a></span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Double
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">*</span></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Double
+</span><a href="ProbabilityFunctions.html#factorial"><span class="hs-identifier hs-var">factorial</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030401"><span class="hs-identifier hs-var">n</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-glyph hs-var">-</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">1</span></span><span class="hs-special">)</span><span>
+</span><span id="line-28"></span><span>            </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><span class="hs-identifier hs-var">otherwise</span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Double
+</span><span class="hs-number">0</span></span><span>
+</span><span id="line-29"></span><span>
+</span><span id="line-30"></span><span class="annot"><span class="hs-comment">{-|
+Purpose:
+    
+    * Computes n Choose r (aka the binomial coeficcient)
+
+Parameters:
+    
+    * 1st Parameter (n) : The term &quot;n&quot; in the binomial coeficcient
+    
+    * 2nd Parameter (r) : The term &quot;r&quot; in the binomial coeficcient
+
+Output:
+    
+    * Returns n Choose r
+
+Notes:
+    
+    * n must be greater than or equal to r
+-}</span></span><span>
+</span><span id="line-49"></span><span class="annot"><a href="ProbabilityFunctions.html#nCr"><span class="hs-identifier hs-type">nCr</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Double</span></span><span>
+</span><span id="line-50"></span><span id="nCr"><span class="annot"><span class="annottext">nCr :: Int -&gt; Int -&gt; Double
+</span><a href="ProbabilityFunctions.html#nCr"><span class="hs-identifier hs-var hs-var">nCr</span></a></span></span><span> </span><span id="local-6989586621679030405"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030405"><span class="hs-identifier hs-var">n</span></a></span></span><span> </span><span id="local-6989586621679030406"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030406"><span class="hs-identifier hs-var">r</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Double
+</span><a href="ProbabilityFunctions.html#factorial"><span class="hs-identifier hs-var">factorial</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030405"><span class="hs-identifier hs-var">n</span></a></span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Double
+forall a. Fractional a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">/</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int -&gt; Double
+</span><a href="ProbabilityFunctions.html#factorial"><span class="hs-identifier hs-var">factorial</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030406"><span class="hs-identifier hs-var">r</span></a></span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Double
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">*</span></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Double
+</span><a href="ProbabilityFunctions.html#factorial"><span class="hs-identifier hs-var">factorial</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030405"><span class="hs-identifier hs-var">n</span></a></span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-glyph hs-var">-</span></span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030406"><span class="hs-identifier hs-var">r</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-51"></span><span>
+</span><span id="line-52"></span><span class="annot"><span class="hs-comment">{-|
+Purpose:
+    
+    * Computes the probability P(X = w) for the Hypergeometric Probability Distribution  X = Hypergeometric(x, y, z);
+      where x is the population size, y is the number of desired elements in the population, z is the number of draws,
+      w is the target number of successes
+
+Parameters:
+    
+    * 1st Parameter (x) : The population size
+    
+    * 2nd Parameter (y) : The number of desired elements in the population
+    
+    * 3rd Parameter (z) : The number of draws / samples taken from the population
+    
+    * 4th Parameter (w) : The target number of successes
+
+Output:
+    
+    * Returns P(X = w) for the Hypergeometric Probability Distribution  X = Hypergeometric(x, y, z)
+
+Notes:
+    
+    * x must be greater than or equal to y, z and w
+    
+    * y must be greater than or equal to z and w
+    
+    * z must be greater than or equal to w
+    
+    * This function is used to estimate the probabilities of drawing certain hand types. This is because a Hypergerometric Distribution can be used to
+      model the probability of picking w desired elements when we sample without replacement z times from a population of size x with 
+      y desired elements in the total population.
+    
+    * See &lt;https://en.wikipedia.org/wiki/Hypergeometric_distribution&gt; for more information
+-}</span></span><span>
+</span><span id="line-87"></span><span class="annot"><a href="ProbabilityFunctions.html#hyperGeometric"><span class="hs-identifier hs-type">hyperGeometric</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Double</span></span><span>
+</span><span id="line-88"></span><span id="hyperGeometric"><span class="annot"><span class="annottext">hyperGeometric :: Int -&gt; Int -&gt; Int -&gt; Int -&gt; Double
+</span><a href="ProbabilityFunctions.html#hyperGeometric"><span class="hs-identifier hs-var hs-var">hyperGeometric</span></a></span></span><span> </span><span id="local-6989586621679030409"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030409"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span id="local-6989586621679030410"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030410"><span class="hs-identifier hs-var">y</span></a></span></span><span> </span><span id="local-6989586621679030411"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030411"><span class="hs-identifier hs-var">z</span></a></span></span><span> </span><span id="local-6989586621679030412"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030412"><span class="hs-identifier hs-var">w</span></a></span></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Double
+</span><a href="ProbabilityFunctions.html#nCr"><span class="hs-identifier hs-var">nCr</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030410"><span class="hs-identifier hs-var">y</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030412"><span class="hs-identifier hs-var">w</span></a></span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Double
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">*</span></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Double
+</span><a href="ProbabilityFunctions.html#nCr"><span class="hs-identifier hs-var">nCr</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030409"><span class="hs-identifier hs-var">x</span></a></span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-glyph hs-var">-</span></span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030410"><span class="hs-identifier hs-var">y</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030411"><span class="hs-identifier hs-var">z</span></a></span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-glyph hs-var">-</span></span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030412"><span class="hs-identifier hs-var">w</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Double
+forall a. Fractional a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">/</span></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Double
+</span><a href="ProbabilityFunctions.html#nCr"><span class="hs-identifier hs-var">nCr</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030409"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030411"><span class="hs-identifier hs-var">z</span></a></span><span>
+</span><span id="line-89"></span><span>
+</span><span id="line-90"></span><span>
+</span><span id="line-91"></span><span class="annot"><span class="hs-comment">{-|
+Purpose:
+    
+    * Gets the number of cards of a each rank remaining in the population
+Parameters:
+    
+    * 1st Parameter (playedCards) : A list containing the cards which have already been played
+
+Output:
+    
+    * Returns list containing the number of cards of a each rank remaining in the population
+
+Notes:
+    
+    * playedCards must contain cards which could feasibly occur. For example playedHands could not contain 5 Aces as we know in a deck of cards
+      there are ony 4 cards of each rank
+
+      * Helper function for 'ProbabilityFunctions.probabilityOfHand'
+-}</span></span><span>
+</span><span id="line-110"></span><span class="annot"><a href="ProbabilityFunctions.html#numAvailableCardsByRank"><span class="hs-identifier hs-type">numAvailableCardsByRank</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Halatro.Types.html#Hand"><span class="hs-identifier hs-type">Hand</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">]</span><span>
+</span><span id="line-111"></span><span id="numAvailableCardsByRank"><span class="annot"><span class="annottext">numAvailableCardsByRank :: Hand -&gt; [Int]
+</span><a href="ProbabilityFunctions.html#numAvailableCardsByRank"><span class="hs-identifier hs-var hs-var">numAvailableCardsByRank</span></a></span></span><span> </span><span id="local-6989586621679030415"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030415"><span class="hs-identifier hs-var">playedCards</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Rank -&gt; Int) -&gt; [Rank] -&gt; [Int]
+forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
+</span><span class="hs-identifier hs-var">map</span></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621679030416"><span class="annot"><span class="annottext">Rank
+</span><a href="#local-6989586621679030416"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">4</span></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-glyph hs-var">-</span></span><span> </span><span class="annot"><span class="annottext">Hand -&gt; Int
+forall a. [a] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Rank -&gt; Hand -&gt; Hand
+</span><a href="AuxiliaryFunctions.html#findCardsWithRank"><span class="hs-identifier hs-var">findCardsWithRank</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="#local-6989586621679030416"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030415"><span class="hs-identifier hs-var">playedCards</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Two"><span class="hs-identifier hs-var">Two</span></a></span><span> </span><span class="hs-glyph">..</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Ace"><span class="hs-identifier hs-var">Ace</span></a></span><span class="hs-special">]</span><span>
+</span><span id="line-112"></span><span>
+</span><span id="line-113"></span><span class="annot"><span class="hs-comment">{-|
+Purpose:
+    
+    * Estimates the probability of getting a certain hand type, taking into account which cards have already been used already
+
+Parameters:
+    
+    * 1st Parameter (playedCards) : A list containing the cards which have already been played
+    
+    * 2nd Parameter : The hand type we are estimating the probability for
+
+Output:
+    
+    * Returns an estimated the probability of getting a certain hand type, taking into account which cards have already been used already
+
+Notes:
+    
+    * playedCards must contain cards which could feasibly occur. For example playedHands could not contain 5 Aces as we know in a deck of cards
+      there are ony 4 cards of each rank
+
+    * Helper function for 'ProbabilityFunctions.probabilityOfImprovement'
+
+    * See &quot;Estimating Probabilities&quot; in the &quot;Halatro AI Approach&quot; section found in &lt;index.html&gt;
+-}</span></span><span>
+</span><span id="line-137"></span><span class="annot"><a href="ProbabilityFunctions.html#probabilityOfHand"><span class="hs-identifier hs-type">probabilityOfHand</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Halatro.Types.html#Card"><span class="hs-identifier hs-type">Card</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Halatro.Types.html#HandType"><span class="hs-identifier hs-type">HandType</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Double</span></span><span>
+</span><span id="line-138"></span><span>
+</span><span id="line-139"></span><span id="probabilityOfHand"><span class="annot"><span class="annottext">probabilityOfHand :: Hand -&gt; HandType -&gt; Double
+</span><a href="ProbabilityFunctions.html#probabilityOfHand"><span class="hs-identifier hs-var hs-var">probabilityOfHand</span></a></span></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#None"><span class="hs-identifier hs-var">None</span></a></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Double
+</span><span class="hs-number">0</span></span><span class="hs-special">;</span><span>
+</span><span id="line-140"></span><span>
+</span><span id="line-141"></span><span class="annot"><a href="ProbabilityFunctions.html#probabilityOfHand"><span class="hs-identifier hs-var">probabilityOfHand</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#HighCard"><span class="hs-identifier hs-var">HighCard</span></a></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Double
+</span><span class="hs-number">0</span></span><span class="hs-special">;</span><span>
+</span><span id="line-142"></span><span>
+</span><span id="line-143"></span><span class="annot"><a href="ProbabilityFunctions.html#probabilityOfHand"><span class="hs-identifier hs-var">probabilityOfHand</span></a></span><span> </span><span id="local-6989586621679030425"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030425"><span class="hs-identifier hs-var">playedCards</span></a></span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#Pair"><span class="hs-identifier hs-var">Pair</span></a></span><span>         </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Double] -&gt; Double
+forall a. Num a =&gt; [a] -&gt; a
+forall (t :: * -&gt; *) a. (Foldable t, Num a) =&gt; t a -&gt; a
+</span><span class="hs-identifier hs-var">sum</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int -&gt; Int -&gt; Double
+</span><a href="ProbabilityFunctions.html#hyperGeometric"><span class="hs-identifier hs-var">hyperGeometric</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030428"><span class="hs-identifier hs-var">numCards</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030429"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">5</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">2</span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="local-6989586621679030429"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030429"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Hand -&gt; [Int]
+</span><a href="ProbabilityFunctions.html#numAvailableCardsByRank"><span class="hs-identifier hs-var">numAvailableCardsByRank</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030425"><span class="hs-identifier hs-var">playedCards</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030429"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Bool
+forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">2</span></span><span class="hs-special">]</span><span>
+</span><span id="line-144"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679030428"><span class="annot"><span class="annottext">numCards :: Int
+</span><a href="#local-6989586621679030428"><span class="hs-identifier hs-var hs-var">numCards</span></a></span></span><span>                         </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">52</span></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-glyph hs-var">-</span></span><span> </span><span class="annot"><span class="annottext">Hand -&gt; Int
+forall a. [a] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030425"><span class="hs-identifier hs-var">playedCards</span></a></span><span>
+</span><span id="line-145"></span><span>
+</span><span id="line-146"></span><span class="annot"><a href="ProbabilityFunctions.html#probabilityOfHand"><span class="hs-identifier hs-var">probabilityOfHand</span></a></span><span> </span><span id="local-6989586621679030433"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030433"><span class="hs-identifier hs-var">playedCards</span></a></span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#TwoPair"><span class="hs-identifier hs-var">TwoPair</span></a></span><span>     </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Double
+</span><a href="#local-6989586621679030435"><span class="hs-identifier hs-var">totalTwoPairHands</span></a></span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Double
+forall a. Fractional a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">/</span></span><span> </span><span class="annot"><span class="annottext">Double
+</span><a href="#local-6989586621679030436"><span class="hs-identifier hs-var">totalHands</span></a></span><span>
+</span><span id="line-147"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679030440"><span class="annot"><span class="annottext">numCards :: Int
+</span><a href="#local-6989586621679030440"><span class="hs-identifier hs-var hs-var">numCards</span></a></span></span><span>                        </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">52</span></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-glyph hs-var">-</span></span><span> </span><span class="annot"><span class="annottext">Hand -&gt; Int
+forall a. [a] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030433"><span class="hs-identifier hs-var">playedCards</span></a></span><span>
+</span><span id="line-148"></span><span>          </span><span id="local-6989586621679030445"><span class="annot"><span class="annottext">rankCombinations :: [(Int, Int)]
+</span><a href="#local-6989586621679030445"><span class="hs-identifier hs-var hs-var">rankCombinations</span></a></span></span><span>                </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030446"><span class="hs-identifier hs-var">x</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030447"><span class="hs-identifier hs-var">y</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">|</span><span> </span><span class="hs-special">[</span><span id="local-6989586621679030446"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030446"><span class="hs-identifier hs-var">x</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679030447"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030447"><span class="hs-identifier hs-var">y</span></a></span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Int -&gt; [Int] -&gt; [[Int]]
+forall a. Int -&gt; [a] -&gt; [[a]]
+</span><a href="AuxiliaryFunctions.html#combinations"><span class="hs-identifier hs-var">combinations</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">2</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Hand -&gt; [Int]
+</span><a href="ProbabilityFunctions.html#numAvailableCardsByRank"><span class="hs-identifier hs-var">numAvailableCardsByRank</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030433"><span class="hs-identifier hs-var">playedCards</span></a></span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030446"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Bool
+forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">2</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030447"><span class="hs-identifier hs-var">y</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Bool
+forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">2</span></span><span class="hs-special">]</span><span>
+</span><span id="line-149"></span><span>          </span><span id="local-6989586621679030435"><span class="annot"><span class="annottext">totalTwoPairHands :: Double
+</span><a href="#local-6989586621679030435"><span class="hs-identifier hs-var hs-var">totalTwoPairHands</span></a></span></span><span>               </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Double] -&gt; Double
+forall a. Num a =&gt; [a] -&gt; a
+forall (t :: * -&gt; *) a. (Foldable t, Num a) =&gt; t a -&gt; a
+</span><span class="hs-identifier hs-var">sum</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Double
+</span><a href="ProbabilityFunctions.html#nCr"><span class="hs-identifier hs-var">nCr</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030457"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">2</span></span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Double
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">*</span></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Double
+</span><a href="ProbabilityFunctions.html#nCr"><span class="hs-identifier hs-var">nCr</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030458"><span class="hs-identifier hs-var">y</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">2</span></span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Double
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">*</span></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Double
+forall a b. (Integral a, Num b) =&gt; a -&gt; b
+</span><span class="hs-identifier hs-var">fromIntegral</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030440"><span class="hs-identifier hs-var">numCards</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-glyph hs-var">-</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030457"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-glyph hs-var">-</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030458"><span class="hs-identifier hs-var">y</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">|</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679030457"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030457"><span class="hs-identifier hs-var">x</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679030458"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030458"><span class="hs-identifier hs-var">y</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[(Int, Int)]
+</span><a href="#local-6989586621679030445"><span class="hs-identifier hs-var">rankCombinations</span></a></span><span class="hs-special">]</span><span>
+</span><span id="line-150"></span><span>          </span><span id="local-6989586621679030436"><span class="annot"><span class="annottext">totalHands :: Double
+</span><a href="#local-6989586621679030436"><span class="hs-identifier hs-var hs-var">totalHands</span></a></span></span><span>                      </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Double
+</span><a href="ProbabilityFunctions.html#nCr"><span class="hs-identifier hs-var">nCr</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030440"><span class="hs-identifier hs-var">numCards</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">5</span></span><span>
+</span><span id="line-151"></span><span>
+</span><span id="line-152"></span><span class="annot"><a href="ProbabilityFunctions.html#probabilityOfHand"><span class="hs-identifier hs-var">probabilityOfHand</span></a></span><span> </span><span id="local-6989586621679030459"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030459"><span class="hs-identifier hs-var">playedCards</span></a></span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#ThreeOfAKind"><span class="hs-identifier hs-var">ThreeOfAKind</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Double] -&gt; Double
+forall a. Num a =&gt; [a] -&gt; a
+forall (t :: * -&gt; *) a. (Foldable t, Num a) =&gt; t a -&gt; a
+</span><span class="hs-identifier hs-var">sum</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int -&gt; Int -&gt; Double
+</span><a href="ProbabilityFunctions.html#hyperGeometric"><span class="hs-identifier hs-var">hyperGeometric</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030461"><span class="hs-identifier hs-var">numCards</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030462"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">5</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">3</span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="local-6989586621679030462"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030462"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Hand -&gt; [Int]
+</span><a href="ProbabilityFunctions.html#numAvailableCardsByRank"><span class="hs-identifier hs-var">numAvailableCardsByRank</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030459"><span class="hs-identifier hs-var">playedCards</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030462"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Bool
+forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">3</span></span><span class="hs-special">]</span><span>
+</span><span id="line-153"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679030461"><span class="annot"><span class="annottext">numCards :: Int
+</span><a href="#local-6989586621679030461"><span class="hs-identifier hs-var hs-var">numCards</span></a></span></span><span>                         </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">52</span></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-glyph hs-var">-</span></span><span> </span><span class="annot"><span class="annottext">Hand -&gt; Int
+forall a. [a] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030459"><span class="hs-identifier hs-var">playedCards</span></a></span><span>
+</span><span id="line-154"></span><span>
+</span><span id="line-155"></span><span class="annot"><a href="ProbabilityFunctions.html#probabilityOfHand"><span class="hs-identifier hs-var">probabilityOfHand</span></a></span><span> </span><span id="local-6989586621679030466"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030466"><span class="hs-identifier hs-var">playedCards</span></a></span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#FourOfAKind"><span class="hs-identifier hs-var">FourOfAKind</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Double] -&gt; Double
+forall a. Num a =&gt; [a] -&gt; a
+forall (t :: * -&gt; *) a. (Foldable t, Num a) =&gt; t a -&gt; a
+</span><span class="hs-identifier hs-var">sum</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int -&gt; Int -&gt; Double
+</span><a href="ProbabilityFunctions.html#hyperGeometric"><span class="hs-identifier hs-var">hyperGeometric</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030468"><span class="hs-identifier hs-var">numCards</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030469"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">5</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">4</span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="local-6989586621679030469"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030469"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Hand -&gt; [Int]
+</span><a href="ProbabilityFunctions.html#numAvailableCardsByRank"><span class="hs-identifier hs-var">numAvailableCardsByRank</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030466"><span class="hs-identifier hs-var">playedCards</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030469"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Bool
+forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">4</span></span><span class="hs-special">]</span><span>
+</span><span id="line-156"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679030468"><span class="annot"><span class="annottext">numCards :: Int
+</span><a href="#local-6989586621679030468"><span class="hs-identifier hs-var hs-var">numCards</span></a></span></span><span>                        </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">52</span></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-glyph hs-var">-</span></span><span> </span><span class="annot"><span class="annottext">Hand -&gt; Int
+forall a. [a] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030466"><span class="hs-identifier hs-var">playedCards</span></a></span><span>
+</span><span id="line-157"></span><span>
+</span><span id="line-158"></span><span class="annot"><a href="ProbabilityFunctions.html#probabilityOfHand"><span class="hs-identifier hs-var">probabilityOfHand</span></a></span><span> </span><span id="local-6989586621679030473"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030473"><span class="hs-identifier hs-var">playedCards</span></a></span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#Flush"><span class="hs-identifier hs-var">Flush</span></a></span><span>       </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Double] -&gt; Double
+forall a. Num a =&gt; [a] -&gt; a
+forall (t :: * -&gt; *) a. (Foldable t, Num a) =&gt; t a -&gt; a
+</span><span class="hs-identifier hs-var">sum</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int -&gt; Int -&gt; Double
+</span><a href="ProbabilityFunctions.html#hyperGeometric"><span class="hs-identifier hs-var">hyperGeometric</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030475"><span class="hs-identifier hs-var">numCards</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030476"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">5</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">5</span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="local-6989586621679030476"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030476"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Int]
+</span><a href="#local-6989586621679030477"><span class="hs-identifier hs-var">numAvailableCardsBySuit</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030476"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Bool
+forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">5</span></span><span class="hs-special">]</span><span>
+</span><span id="line-159"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679030475"><span class="annot"><span class="annottext">numCards :: Int
+</span><a href="#local-6989586621679030475"><span class="hs-identifier hs-var hs-var">numCards</span></a></span></span><span>                        </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">52</span></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-glyph hs-var">-</span></span><span> </span><span class="annot"><span class="annottext">Hand -&gt; Int
+forall a. [a] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030473"><span class="hs-identifier hs-var">playedCards</span></a></span><span>
+</span><span id="line-160"></span><span>          </span><span id="local-6989586621679030477"><span class="annot"><span class="annottext">numAvailableCardsBySuit :: [Int]
+</span><a href="#local-6989586621679030477"><span class="hs-identifier hs-var hs-var">numAvailableCardsBySuit</span></a></span></span><span>         </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">13</span></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-glyph hs-var">-</span></span><span> </span><span class="annot"><span class="annottext">Hand -&gt; Int
+forall a. [a] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Suit -&gt; Hand -&gt; Hand
+</span><a href="AuxiliaryFunctions.html#findCardsWithSuit"><span class="hs-identifier hs-var">findCardsWithSuit</span></a></span><span> </span><span class="annot"><span class="annottext">Suit
+</span><a href="#local-6989586621679030487"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030473"><span class="hs-identifier hs-var">playedCards</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">|</span><span> </span><span id="local-6989586621679030487"><span class="annot"><span class="annottext">Suit
+</span><a href="#local-6989586621679030487"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Suit
+</span><a href="Halatro.Types.html#Clubs"><span class="hs-identifier hs-var">Clubs</span></a></span><span> </span><span class="hs-glyph">..</span><span> </span><span class="annot"><span class="annottext">Suit
+</span><a href="Halatro.Types.html#Spades"><span class="hs-identifier hs-var">Spades</span></a></span><span class="hs-special">]</span><span class="hs-special">]</span><span>
+</span><span id="line-161"></span><span>
+</span><span id="line-162"></span><span class="annot"><a href="ProbabilityFunctions.html#probabilityOfHand"><span class="hs-identifier hs-var">probabilityOfHand</span></a></span><span> </span><span id="local-6989586621679030490"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030490"><span class="hs-identifier hs-var">playedCards</span></a></span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#FullHouse"><span class="hs-identifier hs-var">FullHouse</span></a></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Double
+</span><a href="#local-6989586621679030492"><span class="hs-identifier hs-var">totalTwoPairHands</span></a></span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Double
+forall a. Fractional a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">/</span></span><span> </span><span class="annot"><span class="annottext">Double
+</span><a href="#local-6989586621679030493"><span class="hs-identifier hs-var">totalHands</span></a></span><span>
+</span><span id="line-163"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679030497"><span class="annot"><span class="annottext">numCards :: Int
+</span><a href="#local-6989586621679030497"><span class="hs-identifier hs-var hs-var">numCards</span></a></span></span><span>                        </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">52</span></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-glyph hs-var">-</span></span><span> </span><span class="annot"><span class="annottext">Hand -&gt; Int
+forall a. [a] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030490"><span class="hs-identifier hs-var">playedCards</span></a></span><span>
+</span><span id="line-164"></span><span>          </span><span id="local-6989586621679030502"><span class="annot"><span class="annottext">rankCombinations :: [(Int, Int)]
+</span><a href="#local-6989586621679030502"><span class="hs-identifier hs-var hs-var">rankCombinations</span></a></span></span><span>                </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030503"><span class="hs-identifier hs-var">x</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030504"><span class="hs-identifier hs-var">y</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">|</span><span> </span><span class="hs-special">[</span><span id="local-6989586621679030503"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030503"><span class="hs-identifier hs-var">x</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679030504"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030504"><span class="hs-identifier hs-var">y</span></a></span></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Int -&gt; [Int] -&gt; [[Int]]
+forall a. Int -&gt; [a] -&gt; [[a]]
+</span><a href="AuxiliaryFunctions.html#combinations"><span class="hs-identifier hs-var">combinations</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">2</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Hand -&gt; [Int]
+</span><a href="ProbabilityFunctions.html#numAvailableCardsByRank"><span class="hs-identifier hs-var">numAvailableCardsByRank</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030490"><span class="hs-identifier hs-var">playedCards</span></a></span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030503"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Bool
+forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">2</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030504"><span class="hs-identifier hs-var">y</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Bool
+forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">3</span></span><span class="hs-special">]</span><span>
+</span><span id="line-165"></span><span>          </span><span id="local-6989586621679030492"><span class="annot"><span class="annottext">totalTwoPairHands :: Double
+</span><a href="#local-6989586621679030492"><span class="hs-identifier hs-var hs-var">totalTwoPairHands</span></a></span></span><span>               </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Double] -&gt; Double
+forall a. Num a =&gt; [a] -&gt; a
+forall (t :: * -&gt; *) a. (Foldable t, Num a) =&gt; t a -&gt; a
+</span><span class="hs-identifier hs-var">sum</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Double
+</span><a href="ProbabilityFunctions.html#nCr"><span class="hs-identifier hs-var">nCr</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030510"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">2</span></span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Double
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">*</span></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Double
+</span><a href="ProbabilityFunctions.html#nCr"><span class="hs-identifier hs-var">nCr</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030511"><span class="hs-identifier hs-var">y</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">3</span></span><span> </span><span class="hs-glyph">|</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679030510"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030510"><span class="hs-identifier hs-var">x</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679030511"><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030511"><span class="hs-identifier hs-var">y</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[(Int, Int)]
+</span><a href="#local-6989586621679030502"><span class="hs-identifier hs-var">rankCombinations</span></a></span><span class="hs-special">]</span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Double
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">*</span></span><span> </span><span class="annot"><span class="annottext">Double
+</span><span class="hs-number">2</span></span><span>
+</span><span id="line-166"></span><span>          </span><span id="local-6989586621679030493"><span class="annot"><span class="annottext">totalHands :: Double
+</span><a href="#local-6989586621679030493"><span class="hs-identifier hs-var hs-var">totalHands</span></a></span></span><span>                      </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Double
+</span><a href="ProbabilityFunctions.html#nCr"><span class="hs-identifier hs-var">nCr</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030497"><span class="hs-identifier hs-var">numCards</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">5</span></span><span>
+</span><span id="line-167"></span><span>
+</span><span id="line-168"></span><span class="annot"><a href="ProbabilityFunctions.html#probabilityOfHand"><span class="hs-identifier hs-var">probabilityOfHand</span></a></span><span> </span><span id="local-6989586621679030512"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030512"><span class="hs-identifier hs-var">playedCards</span></a></span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#Straight"><span class="hs-identifier hs-var">Straight</span></a></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Double
+</span><a href="#local-6989586621679030514"><span class="hs-identifier hs-var">totalStraightHands</span></a></span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Double
+forall a. Fractional a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">/</span></span><span> </span><span class="annot"><span class="annottext">Double
+</span><a href="#local-6989586621679030515"><span class="hs-identifier hs-var">totalHands</span></a></span><span>
+</span><span id="line-169"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679030519"><span class="annot"><span class="annottext">numCards :: Int
+</span><a href="#local-6989586621679030519"><span class="hs-identifier hs-var hs-var">numCards</span></a></span></span><span>                        </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">52</span></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-glyph hs-var">-</span></span><span> </span><span class="annot"><span class="annottext">Hand -&gt; Int
+forall a. [a] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030512"><span class="hs-identifier hs-var">playedCards</span></a></span><span>
+</span><span id="line-170"></span><span>          </span><span id="local-6989586621679030525"><span class="annot"><span class="annottext">combinationsForStraight :: [Rank] -&gt; Int
+</span><a href="#local-6989586621679030525"><span class="hs-identifier hs-var hs-var">combinationsForStraight</span></a></span></span><span> </span><span id="local-6989586621679030526"><span class="annot"><span class="annottext">[Rank]
+</span><a href="#local-6989586621679030526"><span class="hs-identifier hs-var">cards</span></a></span></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Int] -&gt; Int
+forall a. Num a =&gt; [a] -&gt; a
+forall (t :: * -&gt; *) a. (Foldable t, Num a) =&gt; t a -&gt; a
+</span><span class="hs-identifier hs-var">product</span></span><span> </span><span class="annot"><span class="annottext">([Int] -&gt; Int) -&gt; [Int] -&gt; Int
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">(Rank -&gt; Int) -&gt; [Rank] -&gt; [Int]
+forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
+</span><span class="hs-identifier hs-var">map</span></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621679030528"><span class="annot"><span class="annottext">Rank
+</span><a href="#local-6989586621679030528"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">4</span></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-glyph hs-var">-</span></span><span> </span><span class="annot"><span class="annottext">Hand -&gt; Int
+forall a. [a] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Rank -&gt; Hand -&gt; Hand
+</span><a href="AuxiliaryFunctions.html#findCardsWithRank"><span class="hs-identifier hs-var">findCardsWithRank</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="#local-6989586621679030528"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030512"><span class="hs-identifier hs-var">playedCards</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[Rank]
+</span><a href="#local-6989586621679030526"><span class="hs-identifier hs-var">cards</span></a></span><span>
+</span><span id="line-171"></span><span>          </span><span id="local-6989586621679030514"><span class="annot"><span class="annottext">totalStraightHands :: Double
+</span><a href="#local-6989586621679030514"><span class="hs-identifier hs-var hs-var">totalStraightHands</span></a></span></span><span>              </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Double
+forall a b. (Integral a, Num b) =&gt; a -&gt; b
+</span><span class="hs-identifier hs-var">fromIntegral</span></span><span> </span><span class="annot"><span class="annottext">(Int -&gt; Double) -&gt; Int -&gt; Double
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">[Int] -&gt; Int
+forall a. Num a =&gt; [a] -&gt; a
+forall (t :: * -&gt; *) a. (Foldable t, Num a) =&gt; t a -&gt; a
+</span><span class="hs-identifier hs-var">sum</span></span><span> </span><span class="annot"><span class="annottext">([Int] -&gt; Int) -&gt; [Int] -&gt; Int
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">([Rank] -&gt; Int) -&gt; [[Rank]] -&gt; [Int]
+forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
+</span><span class="hs-identifier hs-var">map</span></span><span> </span><span class="annot"><span class="annottext">[Rank] -&gt; Int
+</span><a href="#local-6989586621679030525"><span class="hs-identifier hs-var">combinationsForStraight</span></a></span><span> </span><span class="annot"><span class="annottext">[[Rank]]
+</span><a href="#local-6989586621679030533"><span class="hs-identifier hs-var">possibleStraights</span></a></span><span>
+</span><span id="line-172"></span><span>          </span><span id="local-6989586621679030515"><span class="annot"><span class="annottext">totalHands :: Double
+</span><a href="#local-6989586621679030515"><span class="hs-identifier hs-var hs-var">totalHands</span></a></span></span><span>                      </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Double
+</span><a href="ProbabilityFunctions.html#nCr"><span class="hs-identifier hs-var">nCr</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030519"><span class="hs-identifier hs-var">numCards</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">5</span></span><span>
+</span><span id="line-173"></span><span>          </span><span id="local-6989586621679030533"><span class="annot"><span class="annottext">possibleStraights :: [[Rank]]
+</span><a href="#local-6989586621679030533"><span class="hs-identifier hs-var hs-var">possibleStraights</span></a></span></span><span>               </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Ace"><span class="hs-identifier hs-var">Ace</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Two"><span class="hs-identifier hs-var">Two</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Three"><span class="hs-identifier hs-var">Three</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Four"><span class="hs-identifier hs-var">Four</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Five"><span class="hs-identifier hs-var">Five</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span>
+</span><span id="line-174"></span><span>                                            </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Two"><span class="hs-identifier hs-var">Two</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Three"><span class="hs-identifier hs-var">Three</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Four"><span class="hs-identifier hs-var">Four</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Five"><span class="hs-identifier hs-var">Five</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Six"><span class="hs-identifier hs-var">Six</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span>
+</span><span id="line-175"></span><span>                                            </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Three"><span class="hs-identifier hs-var">Three</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Four"><span class="hs-identifier hs-var">Four</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Five"><span class="hs-identifier hs-var">Five</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Six"><span class="hs-identifier hs-var">Six</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Seven"><span class="hs-identifier hs-var">Seven</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span>
+</span><span id="line-176"></span><span>                                            </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Four"><span class="hs-identifier hs-var">Four</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Five"><span class="hs-identifier hs-var">Five</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Six"><span class="hs-identifier hs-var">Six</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Seven"><span class="hs-identifier hs-var">Seven</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Eight"><span class="hs-identifier hs-var">Eight</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span>
+</span><span id="line-177"></span><span>                                            </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Five"><span class="hs-identifier hs-var">Five</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Six"><span class="hs-identifier hs-var">Six</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Seven"><span class="hs-identifier hs-var">Seven</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Eight"><span class="hs-identifier hs-var">Eight</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Nine"><span class="hs-identifier hs-var">Nine</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span>
+</span><span id="line-178"></span><span>                                            </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Six"><span class="hs-identifier hs-var">Six</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Seven"><span class="hs-identifier hs-var">Seven</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Eight"><span class="hs-identifier hs-var">Eight</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Nine"><span class="hs-identifier hs-var">Nine</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Ten"><span class="hs-identifier hs-var">Ten</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span>
+</span><span id="line-179"></span><span>                                            </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Seven"><span class="hs-identifier hs-var">Seven</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Eight"><span class="hs-identifier hs-var">Eight</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Nine"><span class="hs-identifier hs-var">Nine</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Ten"><span class="hs-identifier hs-var">Ten</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Jack"><span class="hs-identifier hs-var">Jack</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span>
+</span><span id="line-180"></span><span>                                            </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Eight"><span class="hs-identifier hs-var">Eight</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Nine"><span class="hs-identifier hs-var">Nine</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Ten"><span class="hs-identifier hs-var">Ten</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Jack"><span class="hs-identifier hs-var">Jack</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Queen"><span class="hs-identifier hs-var">Queen</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span>
+</span><span id="line-181"></span><span>                                            </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Nine"><span class="hs-identifier hs-var">Nine</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Ten"><span class="hs-identifier hs-var">Ten</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Jack"><span class="hs-identifier hs-var">Jack</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Queen"><span class="hs-identifier hs-var">Queen</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#King"><span class="hs-identifier hs-var">King</span></a></span><span class="hs-special">]</span><span class="hs-special">,</span><span>
+</span><span id="line-182"></span><span>                                            </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Ten"><span class="hs-identifier hs-var">Ten</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Jack"><span class="hs-identifier hs-var">Jack</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Queen"><span class="hs-identifier hs-var">Queen</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#King"><span class="hs-identifier hs-var">King</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Ace"><span class="hs-identifier hs-var">Ace</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-special">]</span><span>
+</span><span id="line-183"></span><span>
+</span><span id="line-184"></span><span class="annot"><a href="ProbabilityFunctions.html#probabilityOfHand"><span class="hs-identifier hs-var">probabilityOfHand</span></a></span><span> </span><span id="local-6989586621679030545"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030545"><span class="hs-identifier hs-var">playedCards</span></a></span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#StraightFlush"><span class="hs-identifier hs-var">StraightFlush</span></a></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Hand -&gt; HandType -&gt; Double
+</span><a href="ProbabilityFunctions.html#probabilityOfHand"><span class="hs-identifier hs-var">probabilityOfHand</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030545"><span class="hs-identifier hs-var">playedCards</span></a></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#Straight"><span class="hs-identifier hs-var">Straight</span></a></span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Double
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">*</span></span><span> </span><span class="annot"><span class="annottext">Hand -&gt; HandType -&gt; Double
+</span><a href="ProbabilityFunctions.html#probabilityOfHand"><span class="hs-identifier hs-var">probabilityOfHand</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030545"><span class="hs-identifier hs-var">playedCards</span></a></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#Flush"><span class="hs-identifier hs-var">Flush</span></a></span><span>
+</span><span id="line-185"></span><span>
+</span><span id="line-186"></span><span class="annot"><a href="ProbabilityFunctions.html#probabilityOfHand"><span class="hs-identifier hs-var">probabilityOfHand</span></a></span><span> </span><span id="local-6989586621679030547"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030547"><span class="hs-identifier hs-var">playedCards</span></a></span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#RoyalFlush"><span class="hs-identifier hs-var">RoyalFlush</span></a></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Double
+</span><a href="#local-6989586621679030549"><span class="hs-identifier hs-var">totalRoyalFlushHands</span></a></span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Double
+forall a. Fractional a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">/</span></span><span> </span><span class="annot"><span class="annottext">Double
+</span><a href="#local-6989586621679030550"><span class="hs-identifier hs-var">totalHands</span></a></span><span>
+</span><span id="line-187"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679030554"><span class="annot"><span class="annottext">numCards :: Int
+</span><a href="#local-6989586621679030554"><span class="hs-identifier hs-var hs-var">numCards</span></a></span></span><span>                        </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">52</span></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-glyph hs-var">-</span></span><span> </span><span class="annot"><span class="annottext">Hand -&gt; Int
+forall a. [a] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030547"><span class="hs-identifier hs-var">playedCards</span></a></span><span>
+</span><span id="line-188"></span><span>          </span><span id="local-6989586621679030549"><span class="annot"><span class="annottext">totalRoyalFlushHands :: Double
+</span><a href="#local-6989586621679030549"><span class="hs-identifier hs-var hs-var">totalRoyalFlushHands</span></a></span></span><span>            </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Double
+forall a b. (Integral a, Num b) =&gt; a -&gt; b
+</span><span class="hs-identifier hs-var">fromIntegral</span></span><span> </span><span class="annot"><span class="annottext">(Int -&gt; Double) -&gt; Int -&gt; Double
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">[Int] -&gt; Int
+forall a. Ord a =&gt; [a] -&gt; a
+forall (t :: * -&gt; *) a. (Foldable t, Ord a) =&gt; t a -&gt; a
+</span><span class="hs-identifier hs-var">minimum</span></span><span> </span><span class="annot"><span class="annottext">([Int] -&gt; Int) -&gt; [Int] -&gt; Int
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">(Rank -&gt; Int) -&gt; [Rank] -&gt; [Int]
+forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
+</span><span class="hs-identifier hs-var">map</span></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621679030564"><span class="annot"><span class="annottext">Rank
+</span><a href="#local-6989586621679030564"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">4</span></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-glyph hs-var">-</span></span><span> </span><span class="annot"><span class="annottext">Hand -&gt; Int
+forall a. [a] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Rank -&gt; Hand -&gt; Hand
+</span><a href="AuxiliaryFunctions.html#findCardsWithRank"><span class="hs-identifier hs-var">findCardsWithRank</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="#local-6989586621679030564"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030547"><span class="hs-identifier hs-var">playedCards</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Ten"><span class="hs-identifier hs-var">Ten</span></a></span><span> </span><span class="hs-glyph">..</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Ace"><span class="hs-identifier hs-var">Ace</span></a></span><span class="hs-special">]</span><span>
+</span><span id="line-189"></span><span>          </span><span id="local-6989586621679030550"><span class="annot"><span class="annottext">totalHands :: Double
+</span><a href="#local-6989586621679030550"><span class="hs-identifier hs-var hs-var">totalHands</span></a></span></span><span>                      </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Double
+</span><a href="ProbabilityFunctions.html#nCr"><span class="hs-identifier hs-var">nCr</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030554"><span class="hs-identifier hs-var">numCards</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">5</span></span><span>
+</span><span id="line-190"></span><span>
+</span><span id="line-191"></span><span class="annot"><span class="hs-comment">{-|
+Purpose:
+    
+    * Estimates the probability of getting a better hand than the hand that you currently have
+
+Parameters:
+    
+    * 1st Parameter (playedCards) : A list containing the cards which have already been played
+    
+    * 2nd Parameter : The hand type we are estimating the probability for
+
+Output:
+    
+    * Returns an estimated probability of getting a better hand than the hand that you currently have
+
+Notes:
+    
+    * Helper function for 'CourseworkOne.probabilityBasedAI'
+-}</span></span><span>
+</span><span id="line-210"></span><span class="annot"><a href="ProbabilityFunctions.html#probabilityOfImprovement"><span class="hs-identifier hs-type">probabilityOfImprovement</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Halatro.Types.html#Card"><span class="hs-identifier hs-type">Card</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Halatro.Types.html#HandType"><span class="hs-identifier hs-type">HandType</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Double</span></span><span>
+</span><span id="line-211"></span><span id="probabilityOfImprovement"><span class="annot"><span class="annottext">probabilityOfImprovement :: Hand -&gt; HandType -&gt; Double
+</span><a href="ProbabilityFunctions.html#probabilityOfImprovement"><span class="hs-identifier hs-var hs-var">probabilityOfImprovement</span></a></span></span><span> </span><span id="local-6989586621679030565"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030565"><span class="hs-identifier hs-var">playedCards</span></a></span></span><span> </span><span id="local-6989586621679030566"><span class="annot"><span class="annottext">HandType
+</span><a href="#local-6989586621679030566"><span class="hs-identifier hs-var">currentHandType</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Double] -&gt; Double
+forall a. Num a =&gt; [a] -&gt; a
+forall (t :: * -&gt; *) a. (Foldable t, Num a) =&gt; t a -&gt; a
+</span><span class="hs-identifier hs-var">sum</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Hand -&gt; HandType -&gt; Double
+</span><a href="ProbabilityFunctions.html#probabilityOfHand"><span class="hs-identifier hs-var">probabilityOfHand</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030565"><span class="hs-identifier hs-var">playedCards</span></a></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="#local-6989586621679030567"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="local-6989586621679030567"><span class="annot"><span class="annottext">HandType
+</span><a href="#local-6989586621679030567"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">HandType
+</span><a href="#local-6989586621679030568"><span class="hs-identifier hs-var">nextHandType</span></a></span><span> </span><span class="hs-glyph">..</span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#RoyalFlush"><span class="hs-identifier hs-var">RoyalFlush</span></a></span><span class="hs-special">]</span><span class="hs-special">]</span><span>
+</span><span id="line-212"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679030568"><span class="annot"><span class="annottext">nextHandType :: HandType
+</span><a href="#local-6989586621679030568"><span class="hs-identifier hs-var hs-var">nextHandType</span></a></span></span><span> </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="#local-6989586621679030566"><span class="hs-identifier hs-var">currentHandType</span></a></span><span> </span><span class="annot"><span class="annottext">HandType -&gt; HandType -&gt; Bool
+forall a. Eq a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">==</span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#RoyalFlush"><span class="hs-identifier hs-var">RoyalFlush</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#RoyalFlush"><span class="hs-identifier hs-var">RoyalFlush</span></a></span><span>
+</span><span id="line-213"></span><span>                       </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><span class="hs-identifier hs-var">otherwise</span></span><span>                     </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">HandType -&gt; HandType
+forall a. Enum a =&gt; a -&gt; a
+</span><span class="hs-identifier hs-var">succ</span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="#local-6989586621679030566"><span class="hs-identifier hs-var">currentHandType</span></a></span></pre></body></html>

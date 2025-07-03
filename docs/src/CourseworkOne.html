@@ -1,0 +1,644 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-comment">-- NOTE: PLEASE READ THE DOCUMENTATION FOUND IN &quot;../docs/index,.html&quot;, the preamble found under the heading &quot;Halatro AI Approach is important&quot;</span><span>
+</span><span id="line-2"></span><span>
+</span><span id="line-3"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">CourseworkOne</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-4"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="Halatro.Constants.html"><span class="hs-identifier">Halatro.Constants</span></a></span><span>
+</span><span id="line-5"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="Halatro.Types.html"><span class="hs-identifier">Halatro.Types</span></a></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.List</span></span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="AuxiliaryFunctions.html"><span class="hs-identifier">AuxiliaryFunctions</span></a></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="ProbabilityFunctions.html"><span class="hs-identifier">ProbabilityFunctions</span></a></span><span>
+</span><span id="line-9"></span><span>
+</span><span id="line-10"></span><span class="hs-comment">--------------------------------------------------------------------------------</span><span>
+</span><span id="line-11"></span><span class="hs-comment">-- Part 1: check whether a played hand is a certain hand type</span><span>
+</span><span id="line-12"></span><span>
+</span><span id="line-13"></span><span class="annot"><span class="hs-comment">{-|
+Purpose:
+    
+    * Check whether a played hand is a certain hand type
+
+Parameters:
+    
+    * 1st Parameter (xs) : The list of cards to check from
+    
+    * 2nd Parameter : Hand type to check against
+
+Output:
+    
+    * Returns whether a played hand is a certain hand type
+
+Note:
+    
+    * Only Hands with 5 cards or less should be input to this function
+-}</span></span><span>
+</span><span id="line-32"></span><span class="annot"><a href="CourseworkOne.html#contains"><span class="hs-identifier hs-type">contains</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Halatro.Types.html#Hand"><span class="hs-identifier hs-type">Hand</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Halatro.Types.html#HandType"><span class="hs-identifier hs-type">HandType</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Bool</span></span><span>
+</span><span id="line-33"></span><span>
+</span><span id="line-34"></span><span id="contains"><span class="annot"><span class="annottext">contains :: Hand -&gt; HandType -&gt; Bool
+</span><a href="CourseworkOne.html#contains"><span class="hs-identifier hs-var hs-var">contains</span></a></span></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#None"><span class="hs-identifier hs-var">None</span></a></span><span>                </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><span class="hs-identifier hs-var">True</span></span><span>
+</span><span id="line-35"></span><span>
+</span><span id="line-36"></span><span class="annot"><a href="CourseworkOne.html#contains"><span class="hs-identifier hs-var">contains</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#None"><span class="hs-identifier hs-var">None</span></a></span><span>                 </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><span class="hs-identifier hs-var">False</span></span><span>
+</span><span id="line-37"></span><span>
+</span><span id="line-38"></span><span class="hs-comment">-- If the hand forms no other valid hand types then return true for HighCard</span><span>
+</span><span id="line-39"></span><span class="annot"><a href="CourseworkOne.html#contains"><span class="hs-identifier hs-var">contains</span></a></span><span> </span><span id="local-6989586621679030658"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030658"><span class="hs-identifier hs-var">xs</span></a></span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#HighCard"><span class="hs-identifier hs-var">HighCard</span></a></span><span>            </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Bool
+</span><span class="hs-identifier hs-var">not</span></span><span> </span><span class="annot"><span class="annottext">(Bool -&gt; Bool) -&gt; Bool -&gt; Bool
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">(HandType -&gt; Bool) -&gt; [HandType] -&gt; Bool
+forall (t :: * -&gt; *) a. Foldable t =&gt; (a -&gt; Bool) -&gt; t a -&gt; Bool
+</span><span class="hs-identifier hs-var">any</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Hand -&gt; HandType -&gt; Bool
+</span><a href="CourseworkOne.html#contains"><span class="hs-identifier hs-var">contains</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030658"><span class="hs-identifier hs-var">xs</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#Pair"><span class="hs-identifier hs-var">Pair</span></a></span><span> </span><span class="hs-glyph">..</span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#RoyalFlush"><span class="hs-identifier hs-var">RoyalFlush</span></a></span><span class="hs-special">]</span><span>
+</span><span id="line-40"></span><span>
+</span><span id="line-41"></span><span class="hs-comment">-- Group the Cards By Rank, if there exists a group with 2 or more cards then the hand contains a Pair</span><span>
+</span><span id="line-42"></span><span class="annot"><a href="CourseworkOne.html#contains"><span class="hs-identifier hs-var">contains</span></a></span><span> </span><span id="local-6989586621679030664"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030664"><span class="hs-identifier hs-var">xs</span></a></span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#Pair"><span class="hs-identifier hs-var">Pair</span></a></span><span>                </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Hand -&gt; Bool) -&gt; [Hand] -&gt; Bool
+forall (t :: * -&gt; *) a. Foldable t =&gt; (a -&gt; Bool) -&gt; t a -&gt; Bool
+</span><span class="hs-identifier hs-var">any</span></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621679030665"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030665"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Hand -&gt; Int
+forall a. [a] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030665"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Bool
+forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">2</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[Hand]
+</span><a href="#local-6989586621679030667"><span class="hs-identifier hs-var">groupedByRank</span></a></span><span>
+</span><span id="line-43"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679030667"><span class="annot"><span class="annottext">groupedByRank :: [Hand]
+</span><a href="#local-6989586621679030667"><span class="hs-identifier hs-var hs-var">groupedByRank</span></a></span></span><span>         </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Rank -&gt; Hand) -&gt; [Rank] -&gt; [Hand]
+forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
+</span><span class="hs-identifier hs-var">map</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Rank -&gt; Hand -&gt; Hand
+</span><a href="AuxiliaryFunctions.html#findCardsWithRank"><span class="hs-operator hs-var">`findCardsWithRank`</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030664"><span class="hs-identifier hs-var">xs</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[Rank]
+</span><a href="AuxiliaryFunctions.html#ranksDescending"><span class="hs-identifier hs-var">ranksDescending</span></a></span><span>
+</span><span id="line-44"></span><span>
+</span><span id="line-45"></span><span class="hs-comment">-- Group the Cards By Rank, if there exists 2 groups with 2 or more cards then the hand contains a TwoPair</span><span>
+</span><span id="line-46"></span><span class="annot"><a href="CourseworkOne.html#contains"><span class="hs-identifier hs-var">contains</span></a></span><span> </span><span id="local-6989586621679030670"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030670"><span class="hs-identifier hs-var">xs</span></a></span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#TwoPair"><span class="hs-identifier hs-var">TwoPair</span></a></span><span>             </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Hand] -&gt; Int
+forall a. [a] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="annot"><span class="annottext">[Hand]
+</span><a href="#local-6989586621679030672"><span class="hs-identifier hs-var">pairsByRank</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Bool
+forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">2</span></span><span>
+</span><span id="line-47"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679030673"><span class="annot"><span class="annottext">groupedByRank :: [Hand]
+</span><a href="#local-6989586621679030673"><span class="hs-identifier hs-var hs-var">groupedByRank</span></a></span></span><span>         </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Rank -&gt; Hand) -&gt; [Rank] -&gt; [Hand]
+forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
+</span><span class="hs-identifier hs-var">map</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Rank -&gt; Hand -&gt; Hand
+</span><a href="AuxiliaryFunctions.html#findCardsWithRank"><span class="hs-operator hs-var">`findCardsWithRank`</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030670"><span class="hs-identifier hs-var">xs</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[Rank]
+</span><a href="AuxiliaryFunctions.html#ranksDescending"><span class="hs-identifier hs-var">ranksDescending</span></a></span><span>
+</span><span id="line-48"></span><span>          </span><span id="local-6989586621679030672"><span class="annot"><span class="annottext">pairsByRank :: [Hand]
+</span><a href="#local-6989586621679030672"><span class="hs-identifier hs-var hs-var">pairsByRank</span></a></span></span><span>           </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Hand -&gt; Bool) -&gt; [Hand] -&gt; [Hand]
+forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
+</span><span class="hs-identifier hs-var">filter</span></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621679030677"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030677"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Hand -&gt; Int
+forall a. [a] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030677"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Bool
+forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">2</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[Hand]
+</span><a href="#local-6989586621679030673"><span class="hs-identifier hs-var">groupedByRank</span></a></span><span>
+</span><span id="line-49"></span><span>
+</span><span id="line-50"></span><span class="hs-comment">-- Group the Cards By Rank, if there exists a group with 3 or more cards then the hand contains a ThreeOfAKind</span><span>
+</span><span id="line-51"></span><span class="annot"><a href="CourseworkOne.html#contains"><span class="hs-identifier hs-var">contains</span></a></span><span> </span><span id="local-6989586621679030678"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030678"><span class="hs-identifier hs-var">xs</span></a></span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#ThreeOfAKind"><span class="hs-identifier hs-var">ThreeOfAKind</span></a></span><span>        </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Hand -&gt; Bool) -&gt; [Hand] -&gt; Bool
+forall (t :: * -&gt; *) a. Foldable t =&gt; (a -&gt; Bool) -&gt; t a -&gt; Bool
+</span><span class="hs-identifier hs-var">any</span></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621679030680"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030680"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Hand -&gt; Int
+forall a. [a] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030680"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Bool
+forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">3</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[Hand]
+</span><a href="#local-6989586621679030681"><span class="hs-identifier hs-var">groupedByRank</span></a></span><span>
+</span><span id="line-52"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679030681"><span class="annot"><span class="annottext">groupedByRank :: [Hand]
+</span><a href="#local-6989586621679030681"><span class="hs-identifier hs-var hs-var">groupedByRank</span></a></span></span><span>         </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Rank -&gt; Hand) -&gt; [Rank] -&gt; [Hand]
+forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
+</span><span class="hs-identifier hs-var">map</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Rank -&gt; Hand -&gt; Hand
+</span><a href="AuxiliaryFunctions.html#findCardsWithRank"><span class="hs-operator hs-var">`findCardsWithRank`</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030678"><span class="hs-identifier hs-var">xs</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[Rank]
+</span><a href="AuxiliaryFunctions.html#ranksDescending"><span class="hs-identifier hs-var">ranksDescending</span></a></span><span>
+</span><span id="line-53"></span><span>
+</span><span id="line-54"></span><span class="hs-comment">-- Group the Cards By Rank, if there exists a group with 4 or more cards then the hand contains a FourOfAKind</span><span>
+</span><span id="line-55"></span><span class="annot"><a href="CourseworkOne.html#contains"><span class="hs-identifier hs-var">contains</span></a></span><span> </span><span id="local-6989586621679030682"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030682"><span class="hs-identifier hs-var">xs</span></a></span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#FourOfAKind"><span class="hs-identifier hs-var">FourOfAKind</span></a></span><span>         </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Hand -&gt; Bool) -&gt; [Hand] -&gt; Bool
+forall (t :: * -&gt; *) a. Foldable t =&gt; (a -&gt; Bool) -&gt; t a -&gt; Bool
+</span><span class="hs-identifier hs-var">any</span></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621679030684"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030684"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Hand -&gt; Int
+forall a. [a] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030684"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Bool
+forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">4</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[Hand]
+</span><a href="#local-6989586621679030685"><span class="hs-identifier hs-var">groupedByRank</span></a></span><span>
+</span><span id="line-56"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679030685"><span class="annot"><span class="annottext">groupedByRank :: [Hand]
+</span><a href="#local-6989586621679030685"><span class="hs-identifier hs-var hs-var">groupedByRank</span></a></span></span><span>         </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Rank -&gt; Hand) -&gt; [Rank] -&gt; [Hand]
+forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
+</span><span class="hs-identifier hs-var">map</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Rank -&gt; Hand -&gt; Hand
+</span><a href="AuxiliaryFunctions.html#findCardsWithRank"><span class="hs-operator hs-var">`findCardsWithRank`</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030682"><span class="hs-identifier hs-var">xs</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[Rank]
+</span><a href="AuxiliaryFunctions.html#ranksDescending"><span class="hs-identifier hs-var">ranksDescending</span></a></span><span>
+</span><span id="line-57"></span><span>
+</span><span id="line-58"></span><span class="hs-comment">-- if the list has a length of five and only contains elements which have successive ranks to each other</span><span>
+</span><span id="line-59"></span><span class="annot"><a href="CourseworkOne.html#contains"><span class="hs-identifier hs-var">contains</span></a></span><span> </span><span id="local-6989586621679030686"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030686"><span class="hs-identifier hs-var">xs</span></a></span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#Straight"><span class="hs-identifier hs-var">Straight</span></a></span><span>            </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Hand -&gt; Int
+forall a. [a] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030686"><span class="hs-identifier hs-var">xs</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Bool
+forall a. Eq a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">==</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">5</span></span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Bool -&gt; Bool
+</span><span class="hs-operator hs-var">&amp;&amp;</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679030689"><span class="hs-identifier hs-var">isAscending</span></a></span><span>
+</span><span id="line-60"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679030690"><span class="annot"><span class="annottext">sortedByRankAsc :: Hand
+</span><a href="#local-6989586621679030690"><span class="hs-identifier hs-var hs-var">sortedByRankAsc</span></a></span></span><span>       </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Card -&gt; Card -&gt; Ordering) -&gt; Hand -&gt; Hand
+forall a. (a -&gt; a -&gt; Ordering) -&gt; [a] -&gt; [a]
+</span><span class="hs-identifier hs-var">sortBy</span></span><span> </span><span class="annot"><span class="annottext">Card -&gt; Card -&gt; Ordering
+</span><a href="AuxiliaryFunctions.html#compareCardsByRankAsc"><span class="hs-identifier hs-var">compareCardsByRankAsc</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030686"><span class="hs-identifier hs-var">xs</span></a></span><span>
+</span><span id="line-61"></span><span>          </span><span id="local-6989586621679030693"><span class="annot"><span class="annottext">sortedByRankAscAceLow :: Hand
+</span><a href="#local-6989586621679030693"><span class="hs-identifier hs-var hs-var">sortedByRankAscAceLow</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Card -&gt; Card -&gt; Ordering) -&gt; Hand -&gt; Hand
+forall a. (a -&gt; a -&gt; Ordering) -&gt; [a] -&gt; [a]
+</span><span class="hs-identifier hs-var">sortBy</span></span><span> </span><span class="annot"><span class="annottext">Card -&gt; Card -&gt; Ordering
+</span><a href="AuxiliaryFunctions.html#compareCardsByRankAscAceLow"><span class="hs-identifier hs-var">compareCardsByRankAscAceLow</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030686"><span class="hs-identifier hs-var">xs</span></a></span><span>
+</span><span id="line-62"></span><span>          </span><span id="local-6989586621679030689"><span class="annot"><span class="annottext">isAscending :: Bool
+</span><a href="#local-6989586621679030689"><span class="hs-identifier hs-var hs-var">isAscending</span></a></span></span><span>           </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Hand -&gt; Bool
+</span><a href="AuxiliaryFunctions.html#isHandAscending"><span class="hs-identifier hs-var">isHandAscending</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030690"><span class="hs-identifier hs-var">sortedByRankAsc</span></a></span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Bool -&gt; Bool
+</span><span class="hs-operator hs-var">||</span></span><span> </span><span class="annot"><span class="annottext">Hand -&gt; Bool
+</span><a href="AuxiliaryFunctions.html#isHandAscending"><span class="hs-identifier hs-var">isHandAscending</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030693"><span class="hs-identifier hs-var">sortedByRankAscAceLow</span></a></span><span>
+</span><span id="line-63"></span><span>
+</span><span id="line-64"></span><span class="hs-comment">-- Group the Cards By Suit, if there exists a group with 5 or more cards then the hand contains a Flush</span><span>
+</span><span id="line-65"></span><span class="annot"><a href="CourseworkOne.html#contains"><span class="hs-identifier hs-var">contains</span></a></span><span> </span><span id="local-6989586621679030697"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030697"><span class="hs-identifier hs-var">xs</span></a></span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#Flush"><span class="hs-identifier hs-var">Flush</span></a></span><span>               </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Hand -&gt; Bool) -&gt; [Hand] -&gt; Bool
+forall (t :: * -&gt; *) a. Foldable t =&gt; (a -&gt; Bool) -&gt; t a -&gt; Bool
+</span><span class="hs-identifier hs-var">any</span></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621679030699"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030699"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Hand -&gt; Int
+forall a. [a] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030699"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Bool
+forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">5</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[Hand]
+</span><a href="#local-6989586621679030700"><span class="hs-identifier hs-var">cardsOfSuit</span></a></span><span>
+</span><span id="line-66"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679030700"><span class="annot"><span class="annottext">cardsOfSuit :: [Hand]
+</span><a href="#local-6989586621679030700"><span class="hs-identifier hs-var hs-var">cardsOfSuit</span></a></span></span><span>           </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Suit -&gt; Hand) -&gt; [Suit] -&gt; [Hand]
+forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
+</span><span class="hs-identifier hs-var">map</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Suit -&gt; Hand -&gt; Hand
+</span><a href="AuxiliaryFunctions.html#findCardsWithSuit"><span class="hs-operator hs-var">`findCardsWithSuit`</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030697"><span class="hs-identifier hs-var">xs</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Suit
+</span><a href="Halatro.Types.html#Clubs"><span class="hs-identifier hs-var">Clubs</span></a></span><span> </span><span class="hs-glyph">..</span><span> </span><span class="annot"><span class="annottext">Suit
+</span><a href="Halatro.Types.html#Spades"><span class="hs-identifier hs-var">Spades</span></a></span><span class="hs-special">]</span><span>
+</span><span id="line-67"></span><span>
+</span><span id="line-68"></span><span class="hs-comment">-- Group the Cards By Rank, if there exists a group with 3 or more cards and a group with 2 cards then the hand contains a Full House</span><span>
+</span><span id="line-69"></span><span class="annot"><a href="CourseworkOne.html#contains"><span class="hs-identifier hs-var">contains</span></a></span><span> </span><span id="local-6989586621679030706"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030706"><span class="hs-identifier hs-var">xs</span></a></span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#FullHouse"><span class="hs-identifier hs-var">FullHouse</span></a></span><span>           </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Hand -&gt; Bool) -&gt; [Hand] -&gt; Bool
+forall (t :: * -&gt; *) a. Foldable t =&gt; (a -&gt; Bool) -&gt; t a -&gt; Bool
+</span><span class="hs-identifier hs-var">any</span></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621679030708"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030708"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Hand -&gt; Int
+forall a. [a] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030708"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Bool
+forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">&gt;=</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">3</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[Hand]
+</span><a href="#local-6989586621679030709"><span class="hs-identifier hs-var">groupedByRank</span></a></span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Bool -&gt; Bool
+</span><span class="hs-operator hs-var">&amp;&amp;</span></span><span> </span><span class="annot"><span class="annottext">(Hand -&gt; Bool) -&gt; [Hand] -&gt; Bool
+forall (t :: * -&gt; *) a. Foldable t =&gt; (a -&gt; Bool) -&gt; t a -&gt; Bool
+</span><span class="hs-identifier hs-var">any</span></span><span> </span><span class="hs-special">(</span><span class="hs-glyph">\</span><span id="local-6989586621679030710"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030710"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Hand -&gt; Int
+forall a. [a] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030710"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Bool
+forall a. Eq a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">==</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">2</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[Hand]
+</span><a href="#local-6989586621679030709"><span class="hs-identifier hs-var">groupedByRank</span></a></span><span>
+</span><span id="line-70"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679030709"><span class="annot"><span class="annottext">groupedByRank :: [Hand]
+</span><a href="#local-6989586621679030709"><span class="hs-identifier hs-var hs-var">groupedByRank</span></a></span></span><span>         </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Rank -&gt; Hand) -&gt; [Rank] -&gt; [Hand]
+forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
+</span><span class="hs-identifier hs-var">map</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Rank -&gt; Hand -&gt; Hand
+</span><a href="AuxiliaryFunctions.html#findCardsWithRank"><span class="hs-operator hs-var">`findCardsWithRank`</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030706"><span class="hs-identifier hs-var">xs</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[Rank]
+</span><a href="AuxiliaryFunctions.html#ranksDescending"><span class="hs-identifier hs-var">ranksDescending</span></a></span><span>
+</span><span id="line-71"></span><span>
+</span><span id="line-72"></span><span class="hs-comment">-- If the hand contains a Straight and a Flush then it contains a straight flush</span><span>
+</span><span id="line-73"></span><span class="annot"><a href="CourseworkOne.html#contains"><span class="hs-identifier hs-var">contains</span></a></span><span> </span><span id="local-6989586621679030711"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030711"><span class="hs-identifier hs-var">xs</span></a></span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#StraightFlush"><span class="hs-identifier hs-var">StraightFlush</span></a></span><span>       </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Hand -&gt; HandType -&gt; Bool
+</span><a href="CourseworkOne.html#contains"><span class="hs-identifier hs-var">contains</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030711"><span class="hs-identifier hs-var">xs</span></a></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#Straight"><span class="hs-identifier hs-var">Straight</span></a></span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Bool -&gt; Bool
+</span><span class="hs-operator hs-var">&amp;&amp;</span></span><span> </span><span class="annot"><span class="annottext">Hand -&gt; HandType -&gt; Bool
+</span><a href="CourseworkOne.html#contains"><span class="hs-identifier hs-var">contains</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030711"><span class="hs-identifier hs-var">xs</span></a></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#Flush"><span class="hs-identifier hs-var">Flush</span></a></span><span>
+</span><span id="line-74"></span><span>
+</span><span id="line-75"></span><span class="hs-comment">-- If we get a list where we have 1 of each card from Ten to Ace that exists in xs and that list contains a flush then we have a royal flush</span><span>
+</span><span id="line-76"></span><span class="annot"><a href="CourseworkOne.html#contains"><span class="hs-identifier hs-var">contains</span></a></span><span> </span><span id="local-6989586621679030713"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030713"><span class="hs-identifier hs-var">xs</span></a></span></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#RoyalFlush"><span class="hs-identifier hs-var">RoyalFlush</span></a></span><span>          </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Hand -&gt; HandType -&gt; Bool
+</span><a href="CourseworkOne.html#contains"><span class="hs-identifier hs-var">contains</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030714"><span class="hs-identifier hs-var">royalCards</span></a></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#Flush"><span class="hs-identifier hs-var">Flush</span></a></span><span>
+</span><span id="line-77"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679030714"><span class="annot"><span class="annottext">royalCards :: Hand
+</span><a href="#local-6989586621679030714"><span class="hs-identifier hs-var hs-var">royalCards</span></a></span></span><span>            </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Hand] -&gt; Hand
+forall (t :: * -&gt; *) a. Foldable t =&gt; t [a] -&gt; [a]
+</span><span class="hs-identifier hs-var">concat</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int -&gt; Hand -&gt; Hand
+forall a. Int -&gt; [a] -&gt; [a]
+</span><span class="hs-identifier hs-var">take</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">1</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Rank -&gt; Hand -&gt; Hand
+</span><a href="AuxiliaryFunctions.html#findCardsWithRank"><span class="hs-identifier hs-var">findCardsWithRank</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="#local-6989586621679030720"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030713"><span class="hs-identifier hs-var">xs</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">|</span><span> </span><span id="local-6989586621679030720"><span class="annot"><span class="annottext">Rank
+</span><a href="#local-6989586621679030720"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Ten"><span class="hs-identifier hs-var">Ten</span></a></span><span> </span><span class="hs-glyph">..</span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Ace"><span class="hs-identifier hs-var">Ace</span></a></span><span class="hs-special">]</span><span class="hs-special">]</span><span>
+</span><span id="line-78"></span><span>
+</span><span id="line-79"></span><span class="hs-comment">--------------------------------------------------------------------------------</span><span>
+</span><span id="line-80"></span><span class="hs-comment">-- Part 2: identify the highest value hand type in a played hand</span><span>
+</span><span id="line-81"></span><span>
+</span><span id="line-82"></span><span class="annot"><span class="hs-comment">{-|
+Purpose:
+    
+    * Identify the highest value hand type in a played hand
+
+Parameters:
+    
+    * 1st Parameter (xs) : The list of cards to check from
+
+Output:
+    
+    * Returns the highest value hand type in a played hand
+-}</span></span><span>
+</span><span id="line-95"></span><span class="annot"><a href="CourseworkOne.html#bestHandType"><span class="hs-identifier hs-type">bestHandType</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Halatro.Types.html#Hand"><span class="hs-identifier hs-type">Hand</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Halatro.Types.html#HandType"><span class="hs-identifier hs-type">HandType</span></a></span><span>
+</span><span id="line-96"></span><span id="bestHandType"><span class="annot"><span class="annottext">bestHandType :: Hand -&gt; HandType
+</span><a href="CourseworkOne.html#bestHandType"><span class="hs-identifier hs-var hs-var">bestHandType</span></a></span></span><span> </span><span id="local-6989586621679030724"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030724"><span class="hs-identifier hs-var">xs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[HandType] -&gt; HandType
+forall a. Ord a =&gt; [a] -&gt; a
+forall (t :: * -&gt; *) a. (Foldable t, Ord a) =&gt; t a -&gt; a
+</span><span class="hs-identifier hs-var">maximum</span></span><span> </span><span class="annot"><span class="annottext">([HandType] -&gt; HandType) -&gt; [HandType] -&gt; HandType
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">(HandType -&gt; Bool) -&gt; [HandType] -&gt; [HandType]
+forall a. (a -&gt; Bool) -&gt; [a] -&gt; [a]
+</span><span class="hs-identifier hs-var">filter</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Hand -&gt; HandType -&gt; Bool
+</span><a href="CourseworkOne.html#contains"><span class="hs-identifier hs-var">contains</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030724"><span class="hs-identifier hs-var">xs</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#None"><span class="hs-identifier hs-var">None</span></a></span><span> </span><span class="hs-glyph">..</span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="Halatro.Types.html#RoyalFlush"><span class="hs-identifier hs-var">RoyalFlush</span></a></span><span class="hs-special">]</span><span>
+</span><span id="line-97"></span><span>
+</span><span id="line-98"></span><span class="hs-comment">--------------------------------------------------------------------------------</span><span>
+</span><span id="line-99"></span><span class="hs-comment">-- Part 3: score a played hand</span><span>
+</span><span id="line-100"></span><span>
+</span><span id="line-101"></span><span class="annot"><span class="hs-comment">{-|
+Purpose:
+    
+    * Identify cards in hand the that contribute to the best hand type
+
+Parameters:
+    
+    * 1st Parameter (xs) : The list of cards to check from
+
+Output:
+    
+    * Returns a list containing the cards in hand the that contribute to the best hand type
+-}</span></span><span>
+</span><span id="line-114"></span><span class="annot"><a href="CourseworkOne.html#whichCardsScore"><span class="hs-identifier hs-type">whichCardsScore</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Halatro.Types.html#Hand"><span class="hs-identifier hs-type">Hand</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Halatro.Types.html#Card"><span class="hs-identifier hs-type">Card</span></a></span><span class="hs-special">]</span><span>
+</span><span id="line-115"></span><span id="whichCardsScore"><span class="annot"><span class="annottext">whichCardsScore :: Hand -&gt; Hand
+</span><a href="CourseworkOne.html#whichCardsScore"><span class="hs-identifier hs-var hs-var">whichCardsScore</span></a></span></span><span> </span><span id="local-6989586621679030727"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030727"><span class="hs-identifier hs-var">xs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Hand -&gt; HandType -&gt; Hand
+</span><a href="AuxiliaryFunctions.html#getScoringCards"><span class="hs-identifier hs-var">getScoringCards</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030727"><span class="hs-identifier hs-var">xs</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Hand -&gt; HandType
+</span><a href="CourseworkOne.html#bestHandType"><span class="hs-identifier hs-var">bestHandType</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030727"><span class="hs-identifier hs-var">xs</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-116"></span><span>
+</span><span id="line-117"></span><span class="annot"><span class="hs-comment">{-|
+Purpose:
+    
+    * Calculates the score of a hand based on the formula /[(base score + sum of rank scores) * multiplier/]
+
+Parameters:
+    
+    * 1st Parameter (xs) : The list of cards to check from
+
+Output:
+    
+    * Returns the score of a hand
+-}</span></span><span>
+</span><span id="line-130"></span><span class="annot"><a href="CourseworkOne.html#scoreHand"><span class="hs-identifier hs-type">scoreHand</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="Halatro.Types.html#Hand"><span class="hs-identifier hs-type">Hand</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span>
+</span><span id="line-131"></span><span id="scoreHand"><span class="annot"><span class="annottext">scoreHand :: Hand -&gt; Int
+</span><a href="CourseworkOne.html#scoreHand"><span class="hs-identifier hs-var hs-var">scoreHand</span></a></span></span><span> </span><span id="local-6989586621679030730"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030730"><span class="hs-identifier hs-var">xs</span></a></span></span><span>    </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030731"><span class="hs-identifier hs-var">base</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">+</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030733"><span class="hs-identifier hs-var">bonus</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Int
+forall a. Num a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">*</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><a href="#local-6989586621679030735"><span class="hs-identifier hs-var">mult</span></a></span><span>
+</span><span id="line-132"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679030736"><span class="annot"><span class="annottext">best :: HandType
+</span><a href="#local-6989586621679030736"><span class="hs-identifier hs-var hs-var">best</span></a></span></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Hand -&gt; HandType
+</span><a href="CourseworkOne.html#bestHandType"><span class="hs-identifier hs-var">bestHandType</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030730"><span class="hs-identifier hs-var">xs</span></a></span><span>
+</span><span id="line-133"></span><span>          </span><span id="local-6989586621679030731"><span class="annot"><span class="annottext">base :: Int
+</span><a href="#local-6989586621679030731"><span class="hs-identifier hs-var hs-var">base</span></a></span></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Int, Int) -&gt; Int
+forall a b. (a, b) -&gt; a
+</span><span class="hs-identifier hs-var">fst</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">HandType -&gt; (Int, Int)
+</span><a href="Halatro.Constants.html#handTypeValues"><span class="hs-identifier hs-var">handTypeValues</span></a></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="#local-6989586621679030736"><span class="hs-identifier hs-var">best</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-134"></span><span>          </span><span id="local-6989586621679030735"><span class="annot"><span class="annottext">mult :: Int
+</span><a href="#local-6989586621679030735"><span class="hs-identifier hs-var hs-var">mult</span></a></span></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Int, Int) -&gt; Int
+forall a b. (a, b) -&gt; b
+</span><span class="hs-identifier hs-var">snd</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">HandType -&gt; (Int, Int)
+</span><a href="Halatro.Constants.html#handTypeValues"><span class="hs-identifier hs-var">handTypeValues</span></a></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="#local-6989586621679030736"><span class="hs-identifier hs-var">best</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-135"></span><span>          </span><span id="local-6989586621679030733"><span class="annot"><span class="annottext">bonus :: Int
+</span><a href="#local-6989586621679030733"><span class="hs-identifier hs-var hs-var">bonus</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Int] -&gt; Int
+forall a. Num a =&gt; [a] -&gt; a
+forall (t :: * -&gt; *) a. (Foldable t, Num a) =&gt; t a -&gt; a
+</span><span class="hs-identifier hs-var">sum</span></span><span> </span><span class="annot"><span class="annottext">([Int] -&gt; Int) -&gt; [Int] -&gt; Int
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">(Card -&gt; Int) -&gt; Hand -&gt; [Int]
+forall a b. (a -&gt; b) -&gt; [a] -&gt; [b]
+</span><span class="hs-identifier hs-var">map</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Rank -&gt; Int
+</span><a href="Halatro.Constants.html#rankScore"><span class="hs-identifier hs-var">rankScore</span></a></span><span> </span><span class="annot"><span class="annottext">(Rank -&gt; Int) -&gt; (Card -&gt; Rank) -&gt; Card -&gt; Int
+forall b c a. (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c
+</span><span class="hs-operator hs-var">.</span></span><span> </span><span class="annot"><span class="annottext">Card -&gt; Rank
+</span><a href="Halatro.Types.html#rank"><span class="hs-identifier hs-var">rank</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Hand -&gt; HandType -&gt; Hand
+</span><a href="AuxiliaryFunctions.html#getScoringCards"><span class="hs-identifier hs-var">getScoringCards</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030730"><span class="hs-identifier hs-var">xs</span></a></span><span> </span><span class="annot"><span class="annottext">HandType
+</span><a href="#local-6989586621679030736"><span class="hs-identifier hs-var">best</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-136"></span><span>
+</span><span id="line-137"></span><span class="hs-comment">--------------------------------------------------------------------------------</span><span>
+</span><span id="line-138"></span><span class="hs-comment">-- Part 4: find the highest scoring hand of 5 cards out of n&gt;=5 cards</span><span>
+</span><span id="line-139"></span><span>
+</span><span id="line-140"></span><span class="annot"><span class="hs-comment">{-|
+Purpose:
+    
+    * Identify the highest scoring hand of 5 cards out of n&gt;=5 cards by scoring all combinations of size 5 and playing the highest scoring combination
+
+Parameters:
+    
+    * 1st Parameter (xs) : The list of cards to check from
+
+Output:
+    
+    * Returns the highest scoring hand of 5 cards out of n&gt;=5 cards
+-}</span></span><span>
+</span><span id="line-153"></span><span class="annot"><a href="CourseworkOne.html#highestScoringHand"><span class="hs-identifier hs-type">highestScoringHand</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Halatro.Types.html#Card"><span class="hs-identifier hs-type">Card</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Halatro.Types.html#Hand"><span class="hs-identifier hs-type">Hand</span></a></span><span>
+</span><span id="line-154"></span><span>
+</span><span id="line-155"></span><span id="highestScoringHand"><span class="annot"><span class="annottext">highestScoringHand :: Hand -&gt; Hand
+</span><a href="CourseworkOne.html#highestScoringHand"><span class="hs-identifier hs-var hs-var">highestScoringHand</span></a></span></span><span> </span><span id="local-6989586621679030747"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030747"><span class="hs-identifier hs-var">xs</span></a></span></span><span>         </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Bool
+</span><span class="hs-identifier hs-var">not</span></span><span> </span><span class="annot"><span class="annottext">(Bool -&gt; Bool) -&gt; Bool -&gt; Bool
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">[Hand] -&gt; Bool
+forall a. [a] -&gt; Bool
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Bool
+</span><span class="hs-identifier hs-var">null</span></span><span> </span><span class="annot"><span class="annottext">[Hand]
+</span><a href="#local-6989586621679030749"><span class="hs-identifier hs-var">allCombinations</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Hand -&gt; Hand -&gt; Ordering) -&gt; [Hand] -&gt; Hand
+forall (t :: * -&gt; *) a.
+Foldable t =&gt;
+(a -&gt; a -&gt; Ordering) -&gt; t a -&gt; a
+</span><span class="hs-identifier hs-var">maximumBy</span></span><span> </span><span class="annot"><span class="annottext">Hand -&gt; Hand -&gt; Ordering
+</span><a href="#local-6989586621679030751"><span class="hs-identifier hs-var">scoreComparison</span></a></span><span> </span><span class="annot"><span class="annottext">[Hand]
+</span><a href="#local-6989586621679030749"><span class="hs-identifier hs-var">allCombinations</span></a></span><span>
+</span><span id="line-156"></span><span>                              </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><span class="hs-identifier hs-var">otherwise</span></span><span>                  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030747"><span class="hs-identifier hs-var">xs</span></a></span><span>
+</span><span id="line-157"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679030752"><span class="annot"><span class="annottext">sortedByRankDesc :: Hand
+</span><a href="#local-6989586621679030752"><span class="hs-identifier hs-var hs-var">sortedByRankDesc</span></a></span></span><span>    </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Card -&gt; Card -&gt; Ordering) -&gt; Hand -&gt; Hand
+forall a. (a -&gt; a -&gt; Ordering) -&gt; [a] -&gt; [a]
+</span><span class="hs-identifier hs-var">sortBy</span></span><span> </span><span class="annot"><span class="annottext">Card -&gt; Card -&gt; Ordering
+</span><a href="AuxiliaryFunctions.html#compareCardsByRankDesc"><span class="hs-identifier hs-var">compareCardsByRankDesc</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030747"><span class="hs-identifier hs-var">xs</span></a></span><span>
+</span><span id="line-158"></span><span>          </span><span id="local-6989586621679030749"><span class="annot"><span class="annottext">allCombinations :: [Hand]
+</span><a href="#local-6989586621679030749"><span class="hs-identifier hs-var hs-var">allCombinations</span></a></span></span><span>     </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Hand -&gt; [Hand]
+forall a. Int -&gt; [a] -&gt; [[a]]
+</span><a href="AuxiliaryFunctions.html#combinations"><span class="hs-identifier hs-var">combinations</span></a></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">5</span></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030752"><span class="hs-identifier hs-var">sortedByRankDesc</span></a></span><span>
+</span><span id="line-159"></span><span>          </span><span id="local-6989586621679030751"><span class="annot"><span class="annottext">scoreComparison :: Hand -&gt; Hand -&gt; Ordering
+</span><a href="#local-6989586621679030751"><span class="hs-identifier hs-var hs-var">scoreComparison</span></a></span></span><span> </span><span id="local-6989586621679030756"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030756"><span class="hs-identifier hs-var">a</span></a></span></span><span> </span><span id="local-6989586621679030757"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030757"><span class="hs-identifier hs-var">b</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Ordering
+forall a. Ord a =&gt; a -&gt; a -&gt; Ordering
+</span><span class="hs-identifier hs-var">compare</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Hand -&gt; Int
+</span><a href="CourseworkOne.html#scoreHand"><span class="hs-identifier hs-var">scoreHand</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030756"><span class="hs-identifier hs-var">a</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Hand -&gt; Int
+</span><a href="CourseworkOne.html#scoreHand"><span class="hs-identifier hs-var">scoreHand</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030757"><span class="hs-identifier hs-var">b</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-160"></span><span>
+</span><span id="line-161"></span><span class="hs-comment">--------------------------------------------------------------------------------    </span><span>
+</span><span id="line-162"></span><span class="hs-comment">-- Part 5: implement an AI for maximising score across 3 hands and 3 discards</span><span>
+</span><span id="line-163"></span><span>
+</span><span id="line-164"></span><span class="annot"><span class="hs-comment">{-|
+Purpose:
+    
+    * An AI implementation for Halatro where we always play the 5 highest ranked cards
+
+Parameters:
+
+    * 1st Parameter (moves) : Previous Moves that have been played
+
+    * 2nd Parameter (cards) : The cards in our current hand
+
+Output:
+    
+    * Returns the move we should play
+-}</span></span><span>
+</span><span id="line-179"></span><span class="annot"><a href="CourseworkOne.html#simpleAI"><span class="hs-identifier hs-type">simpleAI</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Halatro.Types.html#Move"><span class="hs-identifier hs-type">Move</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Halatro.Types.html#Card"><span class="hs-identifier hs-type">Card</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Halatro.Types.html#Move"><span class="hs-identifier hs-type">Move</span></a></span><span>
+</span><span id="line-180"></span><span id="simpleAI"><span class="annot"><span class="annottext">simpleAI :: [Move] -&gt; Hand -&gt; Move
+</span><a href="CourseworkOne.html#simpleAI"><span class="hs-identifier hs-var hs-var">simpleAI</span></a></span></span><span> </span><span class="annot"><span class="annottext">[Move]
+</span><span class="hs-identifier">_</span></span><span> </span><span id="local-6989586621679030760"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030760"><span class="hs-identifier hs-var">xs</span></a></span></span><span>              </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">PlayOrDiscard -&gt; Hand -&gt; Move
+</span><a href="Halatro.Types.html#Move"><span class="hs-identifier hs-var">Move</span></a></span><span> </span><span class="annot"><span class="annottext">PlayOrDiscard
+</span><a href="Halatro.Types.html#Play"><span class="hs-identifier hs-var">Play</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030763"><span class="hs-identifier hs-var">handToPlay</span></a></span><span>
+</span><span id="line-181"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679030764"><span class="annot"><span class="annottext">sortedByRankDesc :: Hand
+</span><a href="#local-6989586621679030764"><span class="hs-identifier hs-var hs-var">sortedByRankDesc</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Card -&gt; Card -&gt; Ordering) -&gt; Hand -&gt; Hand
+forall a. (a -&gt; a -&gt; Ordering) -&gt; [a] -&gt; [a]
+</span><span class="hs-identifier hs-var">sortBy</span></span><span> </span><span class="annot"><span class="annottext">Card -&gt; Card -&gt; Ordering
+</span><a href="AuxiliaryFunctions.html#compareCardsByRankDesc"><span class="hs-identifier hs-var">compareCardsByRankDesc</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030760"><span class="hs-identifier hs-var">xs</span></a></span><span>
+</span><span id="line-182"></span><span>          </span><span id="local-6989586621679030763"><span class="annot"><span class="annottext">handToPlay :: Hand
+</span><a href="#local-6989586621679030763"><span class="hs-identifier hs-var hs-var">handToPlay</span></a></span></span><span>       </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Hand -&gt; Hand
+forall a. Int -&gt; [a] -&gt; [a]
+</span><span class="hs-identifier hs-var">take</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">5</span></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030764"><span class="hs-identifier hs-var">sortedByRankDesc</span></a></span><span>
+</span><span id="line-183"></span><span>
+</span><span id="line-184"></span><span class="annot"><span class="hs-comment">{-|
+Purpose:
+    
+    * An AI implementation for Halatro where we always play the best hand
+
+Parameters:
+
+    * 1st Parameter (moves) : Previous Moves that have been played
+
+    * 2nd Parameter (cards) : The cards in our current hand
+
+Output:
+    
+    * Returns the move we should play
+-}</span></span><span>
+</span><span id="line-199"></span><span class="annot"><a href="CourseworkOne.html#sensibleAI"><span class="hs-identifier hs-type">sensibleAI</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Halatro.Types.html#Move"><span class="hs-identifier hs-type">Move</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Halatro.Types.html#Card"><span class="hs-identifier hs-type">Card</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Halatro.Types.html#Move"><span class="hs-identifier hs-type">Move</span></a></span><span>
+</span><span id="line-200"></span><span id="sensibleAI"><span class="annot"><span class="annottext">sensibleAI :: [Move] -&gt; Hand -&gt; Move
+</span><a href="CourseworkOne.html#sensibleAI"><span class="hs-identifier hs-var hs-var">sensibleAI</span></a></span></span><span> </span><span class="annot"><span class="annottext">[Move]
+</span><span class="hs-identifier">_</span></span><span> </span><span id="local-6989586621679030766"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030766"><span class="hs-identifier hs-var">xs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">PlayOrDiscard -&gt; Hand -&gt; Move
+</span><a href="Halatro.Types.html#Move"><span class="hs-identifier hs-var">Move</span></a></span><span> </span><span class="annot"><span class="annottext">PlayOrDiscard
+</span><a href="Halatro.Types.html#Play"><span class="hs-identifier hs-var">Play</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Hand -&gt; Hand
+</span><a href="CourseworkOne.html#highestScoringHand"><span class="hs-identifier hs-var">highestScoringHand</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030766"><span class="hs-identifier hs-var">xs</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-201"></span><span>
+</span><span id="line-202"></span><span class="annot"><span class="hs-comment">{-|
+Purpose:
+    
+    * An AI implementation for Halatro where we discard if our probability of improving the current hand is greater than a threshold value
+    
+    * When we play, we play the cards returned by 'CourseworkOne.highestScoringHand'
+
+    * When we discard, we discard as many cards as possibe given that the rank of the card is less than a Ten
+
+Parameters:
+    
+    * 1st Parameter (pMin) : Discard probability threshold
+    
+    * 2nd Parameter (moves) : Previous Moves that have been played
+
+    * 3rd Parameter (cards) : The cards in our current hand
+
+Output:
+    
+    * Returns the move we should play
+
+Notes:
+    
+    * See 'ProbabilityFunctions.probabilityOfImprovement' and 'ProbabilityFunctions.probabilityOfHand' for more information on probability calculations
+
+    * Helper function for 'CourseworkOne.myAI'
+-}</span></span><span>
+</span><span id="line-229"></span><span class="annot"><a href="CourseworkOne.html#probabilityBasedAI"><span class="hs-identifier hs-type">probabilityBasedAI</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Double</span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Halatro.Types.html#Move"><span class="hs-identifier hs-type">Move</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Halatro.Types.html#Card"><span class="hs-identifier hs-type">Card</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Halatro.Types.html#Move"><span class="hs-identifier hs-type">Move</span></a></span><span>
+</span><span id="line-230"></span><span id="probabilityBasedAI"><span class="annot"><span class="annottext">probabilityBasedAI :: Double -&gt; [Move] -&gt; Hand -&gt; Move
+</span><a href="CourseworkOne.html#probabilityBasedAI"><span class="hs-identifier hs-var hs-var">probabilityBasedAI</span></a></span></span><span> </span><span id="local-6989586621679030771"><span class="annot"><span class="annottext">Double
+</span><a href="#local-6989586621679030771"><span class="hs-identifier hs-var">pMin</span></a></span></span><span> </span><span id="local-6989586621679030772"><span class="annot"><span class="annottext">[Move]
+</span><a href="#local-6989586621679030772"><span class="hs-identifier hs-var">moves</span></a></span></span><span> </span><span id="local-6989586621679030773"><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030773"><span class="hs-identifier hs-var">cards</span></a></span></span><span>    </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679030774"><span class="hs-identifier hs-var">shouldDiscard</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">PlayOrDiscard -&gt; Hand -&gt; Move
+</span><a href="Halatro.Types.html#Move"><span class="hs-identifier hs-var">Move</span></a></span><span> </span><span class="annot"><span class="annottext">PlayOrDiscard
+</span><a href="Halatro.Types.html#Discard"><span class="hs-identifier hs-var">Discard</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030776"><span class="hs-identifier hs-var">cardsToDiscard</span></a></span><span>
+</span><span id="line-231"></span><span>                                       </span><span class="hs-glyph">|</span><span> </span><span class="annot"><span class="annottext">Bool
+</span><span class="hs-identifier hs-var">otherwise</span></span><span>     </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">PlayOrDiscard -&gt; Hand -&gt; Move
+</span><a href="Halatro.Types.html#Move"><span class="hs-identifier hs-var">Move</span></a></span><span> </span><span class="annot"><span class="annottext">PlayOrDiscard
+</span><a href="Halatro.Types.html#Play"><span class="hs-identifier hs-var">Play</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030777"><span class="hs-identifier hs-var">cardsToPlay</span></a></span><span>
+</span><span id="line-232"></span><span>    </span><span class="hs-keyword">where</span><span> </span><span id="local-6989586621679030779"><span class="annot"><span class="annottext">playedCards :: Hand
+</span><a href="#local-6989586621679030779"><span class="hs-identifier hs-var hs-var">playedCards</span></a></span></span><span>                  </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Hand] -&gt; Hand
+forall (t :: * -&gt; *) a. Foldable t =&gt; t [a] -&gt; [a]
+</span><span class="hs-identifier hs-var">concat</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Move -&gt; Hand
+</span><a href="AuxiliaryFunctions.html#cardsFromMove"><span class="hs-identifier hs-var">cardsFromMove</span></a></span><span> </span><span class="annot"><span class="annottext">Move
+</span><a href="#local-6989586621679030781"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="local-6989586621679030781"><span class="annot"><span class="annottext">Move
+</span><a href="#local-6989586621679030781"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Move]
+</span><a href="#local-6989586621679030772"><span class="hs-identifier hs-var">moves</span></a></span><span class="hs-special">]</span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Hand -&gt; Hand -&gt; Hand
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030776"><span class="hs-identifier hs-var">cardsToDiscard</span></a></span><span>
+</span><span id="line-233"></span><span>          </span><span id="local-6989586621679030783"><span class="annot"><span class="annottext">badCards :: Hand
+</span><a href="#local-6989586621679030783"><span class="hs-identifier hs-var hs-var">badCards</span></a></span></span><span>                     </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Card
+</span><a href="#local-6989586621679030784"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="hs-glyph">|</span><span id="local-6989586621679030784"><span class="annot"><span class="annottext">Card
+</span><a href="#local-6989586621679030784"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030773"><span class="hs-identifier hs-var">cards</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Rank -&gt; Int
+</span><a href="Halatro.Constants.html#rankScore"><span class="hs-identifier hs-var">rankScore</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Card -&gt; Rank
+</span><a href="Halatro.Types.html#rank"><span class="hs-identifier hs-var">rank</span></a></span><span> </span><span class="annot"><span class="annottext">Card
+</span><a href="#local-6989586621679030784"><span class="hs-identifier hs-var">x</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Bool
+forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">&lt;</span></span><span> </span><span class="annot"><span class="annottext">Rank -&gt; Int
+</span><a href="Halatro.Constants.html#rankScore"><span class="hs-identifier hs-var">rankScore</span></a></span><span> </span><span class="annot"><span class="annottext">Rank
+</span><a href="Halatro.Types.html#Ten"><span class="hs-identifier hs-var">Ten</span></a></span><span class="hs-special">]</span><span>
+</span><span id="line-234"></span><span>          </span><span id="local-6989586621679030776"><span class="annot"><span class="annottext">cardsToDiscard :: Hand
+</span><a href="#local-6989586621679030776"><span class="hs-identifier hs-var hs-var">cardsToDiscard</span></a></span></span><span>               </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(Card -&gt; Card -&gt; Ordering) -&gt; Hand -&gt; Hand
+forall a. (a -&gt; a -&gt; Ordering) -&gt; [a] -&gt; [a]
+</span><span class="hs-identifier hs-var">sortBy</span></span><span> </span><span class="annot"><span class="annottext">Card -&gt; Card -&gt; Ordering
+</span><a href="AuxiliaryFunctions.html#compareCardsByRankAsc"><span class="hs-identifier hs-var">compareCardsByRankAsc</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030783"><span class="hs-identifier hs-var">badCards</span></a></span><span>
+</span><span id="line-235"></span><span>          </span><span id="local-6989586621679030777"><span class="annot"><span class="annottext">cardsToPlay :: Hand
+</span><a href="#local-6989586621679030777"><span class="hs-identifier hs-var hs-var">cardsToPlay</span></a></span></span><span>                  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Hand -&gt; Hand
+</span><a href="CourseworkOne.html#highestScoringHand"><span class="hs-identifier hs-var">highestScoringHand</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030773"><span class="hs-identifier hs-var">cards</span></a></span><span>
+</span><span id="line-236"></span><span>          </span><span id="local-6989586621679030791"><span class="annot"><span class="annottext">canDiscard :: Bool
+</span><a href="#local-6989586621679030791"><span class="hs-identifier hs-var hs-var">canDiscard</span></a></span></span><span>                   </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Move] -&gt; Int
+forall a. [a] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Move
+</span><a href="#local-6989586621679030792"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="local-6989586621679030792"><span class="annot"><span class="annottext">Move
+</span><a href="#local-6989586621679030792"><span class="hs-identifier hs-var">x</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">[Move]
+</span><a href="#local-6989586621679030772"><span class="hs-identifier hs-var">moves</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Move -&gt; PlayOrDiscard
+</span><a href="AuxiliaryFunctions.html#moveType"><span class="hs-identifier hs-var">moveType</span></a></span><span> </span><span class="annot"><span class="annottext">Move
+</span><a href="#local-6989586621679030792"><span class="hs-identifier hs-var">x</span></a></span><span> </span><span class="annot"><span class="annottext">PlayOrDiscard -&gt; PlayOrDiscard -&gt; Bool
+forall a. Eq a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">==</span></span><span> </span><span class="annot"><span class="annottext">PlayOrDiscard
+</span><a href="Halatro.Types.html#Discard"><span class="hs-identifier hs-var">Discard</span></a></span><span class="hs-special">]</span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Bool
+forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">&lt;</span></span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">3</span></span><span>
+</span><span id="line-237"></span><span>          </span><span id="local-6989586621679030774"><span class="annot"><span class="annottext">shouldDiscard :: Bool
+</span><a href="#local-6989586621679030774"><span class="hs-identifier hs-var hs-var">shouldDiscard</span></a></span></span><span>                </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Hand -&gt; HandType -&gt; Double
+</span><a href="ProbabilityFunctions.html#probabilityOfImprovement"><span class="hs-identifier hs-var">probabilityOfImprovement</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030779"><span class="hs-identifier hs-var">playedCards</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Hand -&gt; HandType
+</span><a href="CourseworkOne.html#bestHandType"><span class="hs-identifier hs-var">bestHandType</span></a></span><span> </span><span class="annot"><span class="annottext">Hand
+</span><a href="#local-6989586621679030777"><span class="hs-identifier hs-var">cardsToPlay</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Double -&gt; Double -&gt; Bool
+forall a. Ord a =&gt; a -&gt; a -&gt; Bool
+</span><span class="hs-operator hs-var">&gt;</span></span><span> </span><span class="annot"><span class="annottext">Double
+</span><a href="#local-6989586621679030771"><span class="hs-identifier hs-var">pMin</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">Bool -&gt; Bool -&gt; Bool
+</span><span class="hs-operator hs-var">&amp;&amp;</span></span><span> </span><span class="annot"><span class="annottext">Bool
+</span><a href="#local-6989586621679030791"><span class="hs-identifier hs-var">canDiscard</span></a></span><span>
+</span><span id="line-238"></span><span>
+</span><span id="line-239"></span><span class="annot"><span class="hs-comment">{-|
+Purpose:
+    
+    * My Halatro AI implementation, uses 'probabilityBasedAI'
+
+Parameters:
+
+    * 1st Parameter (moves) : Previous Moves that have been played
+
+    * 2nd Parameter (cards) : The cards in our current hand
+
+Output:
+    
+    * Returns the move we should play
+-}</span></span><span>
+</span><span id="line-254"></span><span class="annot"><a href="CourseworkOne.html#myAI"><span class="hs-identifier hs-type">myAI</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Halatro.Types.html#Move"><span class="hs-identifier hs-type">Move</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="Halatro.Types.html#Card"><span class="hs-identifier hs-type">Card</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="Halatro.Types.html#Move"><span class="hs-identifier hs-type">Move</span></a></span><span>
+</span><span id="line-255"></span><span id="myAI"><span class="annot"><span class="annottext">myAI :: [Move] -&gt; Hand -&gt; Move
+</span><a href="CourseworkOne.html#myAI"><span class="hs-identifier hs-var hs-var">myAI</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Double -&gt; [Move] -&gt; Hand -&gt; Move
+</span><a href="CourseworkOne.html#probabilityBasedAI"><span class="hs-identifier hs-var">probabilityBasedAI</span></a></span><span> </span><span class="annot"><span class="annottext">Double
+</span><span class="hs-number">0.01</span></span></pre></body></html>
