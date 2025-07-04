@@ -33,15 +33,15 @@ The project exceeded the minimum requirements by adding a fully playable UI and 
 **✅ Scoring System**
 
 - Calculate scores using base chips + bonus chips × multiplier
-- Identify scoring cards with whichCardsScore
+- Identify scoring cards with `whichCardsScore`
 
 ### AI Players
 
-- simpleAI: Always plays highest-ranked cards (3/3 marks)
+- `simpleAI` : Always plays highest-ranked cards (3/3 marks)
 
-- sensibleAI: Plays optimal hand without discards (3/3 marks)
+- `sensibleAI` : Plays optimal hand without discards (3/3 marks)
 
-- myAI: Advanced strategy with discards (9/10 marks)
+- `myAI` : Advanced strategy with discards (9/10 marks)
 
 ## 🛠️ Technologies  
 - **Languages**: Haskell (GHC 9.4.8)   
@@ -49,10 +49,12 @@ The project exceeded the minimum requirements by adding a fully playable UI and 
 
 ## 📂 Repository Structure  
 ```plaintext 
-├── assignment.pdf       # Original coursework brief  
-├── feedback.pdf         # Lecturer feedback (95/100)  
-├── code/...             # Source code  
-└── README.md            # This file
+├── assignment.pdf          # Original coursework brief  
+├── feedback.pdf            # Lecturer feedback (95/100)
+├── HalatroAI-Approach.pdf  # Description of the AI implementation  
+├── code/...                # Source code
+├── docs/...                # HTML documentation for the project  
+└── README.md               # This file
 ```
 
 ## 🚀 Getting Started
@@ -70,7 +72,10 @@ and stack and cabal recommended versions according to ghcup.
 
 - Clone the repository
 
-- Navigate to the `code\` directory and execute the command `stack run`
+- Navigate to the `code\` directory and:
+  - execute the command `stack run` to play Halatro
+  - execute the command `stack run ai` to watch the AI play Halatro
+  - execute the command `run total n` to run the ai `n` number of times and find the average score 
 
 ## ⚠️ Disclaimer
 
